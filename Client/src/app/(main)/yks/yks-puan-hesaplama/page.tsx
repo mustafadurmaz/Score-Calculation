@@ -10,14 +10,31 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import TYTPuanHesaplama from "../../../components/TYTPuanHesaplama";
 import AYTPuanHesaplama from "../../../components/AYTPuanHesaplama";
-
-interface ITukceInputs {
-  turkceDogru?: number;
-  turkceYanlis?: number;
-  turkceNet?: number;
-}
+import PuanSonucları from "../../../components/PuanSonucları";
 
 const FormLayoutDemo = () => {
+  const [tytScores, setTytScores] = useState({
+    turkceNet: 0,
+    sBilimlerNet: 0,
+    tMatematikNet: 0,
+    fBilimleriNet: 0,
+    diplomaNotu:0
+  });
+
+  const [aytScores, setAytScores] = useState({
+    edebiyatNet: 0,
+    tarih1Net: 0,
+    cografya1Net: 0,
+    tarih2Net: 0,
+    cografya2Net:0,
+    felsefeNet: 0,
+    dinNet: 0,
+    matematikNet: 0,
+    fizikNet:0,
+    kimyaNet: 0,
+    biyolojiNet: 0
+  });
+
   const schema = yup.object({});
 
   const {
@@ -28,34 +45,13 @@ const FormLayoutDemo = () => {
     formState: { errors },
     control,
     reset,
-  } = useForm<ITukceInputs>({
+  } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      turkceNet: 0,
     },
   });
 
-  // const calculateTurkceNet = (dogru:number|undefined, yanlis: number|undefined) => {
-  //   const net = dogru - yanlis / 4;
-  //   return net;
-  // };
-
-  const calculateTurkceNet = (
-    dogru: number | undefined,
-    yanlis: number | undefined
-  ): number | undefined => {
-    if (dogru === undefined || yanlis === undefined) {
-      // Eğer herhangi bir parametre undefined ise, undefined döndür
-      return undefined;
-    }
-
-    const net = dogru - yanlis / 4;
-    return net;
-  };
-
-  const turkceDogru = watch("turkceDogru");
-  const turkceYanlis = watch("turkceYanlis");
-  const turkceNet = calculateTurkceNet(turkceDogru, turkceYanlis);
+  console.log("tytScores", tytScores);
 
   const onSubmit = (data: any) => {
     console.log("data", data);
@@ -65,10 +61,15 @@ const FormLayoutDemo = () => {
     <>
       <div className="grid">
         <div className="col-12 md:col-4">
-          <TYTPuanHesaplama />
+          <TYTPuanHesaplama setTytScores={setTytScores} />
         </div>
         <div className="col-12 md:col-4">
-          <AYTPuanHesaplama />
+          <AYTPuanHesaplama
+          setAytScores={setAytScores} 
+          />
+        </div>
+        <div className="col-12 md:col-4">
+          <PuanSonucları tytScores={tytScores} aytScores={aytScores}/>
         </div>
       </div>
     </>
