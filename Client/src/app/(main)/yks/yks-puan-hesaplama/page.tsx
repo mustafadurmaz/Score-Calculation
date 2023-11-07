@@ -12,13 +12,15 @@ import TYTPuanHesaplama from "../../../components/TYTPuanHesaplama";
 import AYTPuanHesaplama from "../../../components/AYTPuanHesaplama";
 import PuanSonucları from "../../../components/PuanSonucları";
 
-const FormLayoutDemo = () => {
+const YKSPage = () => {
+  const [toggleReset, setToggleReset] = useState<boolean>(true);
   const [tytScores, setTytScores] = useState({
     turkceNet: 0,
     sBilimlerNet: 0,
     tMatematikNet: 0,
     fBilimleriNet: 0,
-    diplomaNotu:0
+    diplomaNotu: 0,
+    isEnroll:false
   });
 
   const [aytScores, setAytScores] = useState({
@@ -26,13 +28,13 @@ const FormLayoutDemo = () => {
     tarih1Net: 0,
     cografya1Net: 0,
     tarih2Net: 0,
-    cografya2Net:0,
+    cografya2Net: 0,
     felsefeNet: 0,
     dinNet: 0,
     matematikNet: 0,
-    fizikNet:0,
+    fizikNet: 0,
     kimyaNet: 0,
-    biyolojiNet: 0
+    biyolojiNet: 0,
   });
 
   const schema = yup.object({});
@@ -47,8 +49,7 @@ const FormLayoutDemo = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-    },
+    defaultValues: {},
   });
 
   console.log("tytScores", tytScores);
@@ -61,19 +62,27 @@ const FormLayoutDemo = () => {
     <>
       <div className="grid">
         <div className="col-12 md:col-4">
-          <TYTPuanHesaplama setTytScores={setTytScores} />
-        </div>
-        <div className="col-12 md:col-4">
-          <AYTPuanHesaplama
-          setAytScores={setAytScores} 
+          <TYTPuanHesaplama
+            setTytScores={setTytScores}
+            toggleReset={toggleReset}
           />
         </div>
         <div className="col-12 md:col-4">
-          <PuanSonucları tytScores={tytScores} aytScores={aytScores}/>
+          <AYTPuanHesaplama setAytScores={setAytScores} toggleReset={toggleReset}/>
+        </div>
+        <div className="col-12 md:col-4">
+          <PuanSonucları
+            tytScores={tytScores}
+            setTytScores={setTytScores}
+            aytScores={aytScores}
+            setAytScores={setAytScores}
+            toggleReset={toggleReset}
+            setToggleReset={setToggleReset}
+          />
         </div>
       </div>
     </>
   );
 };
 
-export default FormLayoutDemo;
+export default YKSPage;

@@ -47,9 +47,10 @@ interface IAYTInputs {
 
 interface Params {
   setAytScores: any;
+  toggleReset: boolean;
 }
 
-const AYTPuanHesaplama = ({ setAytScores }: Params) => {
+const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
   const schema = yup.object({});
 
   const {
@@ -118,8 +119,6 @@ const AYTPuanHesaplama = ({ setAytScores }: Params) => {
     return net;
   };
 
-  
-
   const edebiyatDogru = watch("edebiyatDogru");
   const edebiyatYanlis = watch("edebiyatYanlis");
   const edebiyatNet = calculateNet(edebiyatDogru, edebiyatYanlis);
@@ -178,10 +177,26 @@ const AYTPuanHesaplama = ({ setAytScores }: Params) => {
         matematikNet,
         fizikNet,
         kimyaNet,
-        biyolojiNet
+        biyolojiNet,
       };
     });
-  }, [edebiyatNet, tarih1Net, cografya1Net, tarih2Net, cografya2Net, felsefeNet, dinNet, matematikNet, fizikNet, kimyaNet, biyolojiNet]);
+  }, [
+    edebiyatNet,
+    tarih1Net,
+    cografya1Net,
+    tarih2Net,
+    cografya2Net,
+    felsefeNet,
+    dinNet,
+    matematikNet,
+    fizikNet,
+    kimyaNet,
+    biyolojiNet,
+  ]);
+
+  useEffect(() => {
+    reset();
+  }, [toggleReset]);
 
   const onSubmit = (data: any) => {
     console.log("data", data);

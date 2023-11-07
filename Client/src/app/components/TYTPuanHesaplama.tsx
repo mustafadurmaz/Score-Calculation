@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
+import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Dropdown } from "primereact/dropdown";
@@ -28,9 +29,12 @@ interface ITYTInputs {
 
 interface Params {
   setTytScores: any;
+  toggleReset: boolean;
 }
 
-const TYTPuanHesaplama = ({ setTytScores }: Params) => {
+const TYTPuanHesaplama = ({ setTytScores, toggleReset }: Params) => {
+  const [isEnroll, setIsEnroll] = useState<any>(false);
+
   const schema = yup.object({});
 
   const {
@@ -58,7 +62,7 @@ const TYTPuanHesaplama = ({ setTytScores }: Params) => {
       fBilimleriYanlis: 0,
       fBilimleriNet: 0,
       diplomaNotu: 0,
-      OBP:0
+      OBP: 0,
     },
   });
 
@@ -96,8 +100,8 @@ const TYTPuanHesaplama = ({ setTytScores }: Params) => {
   const fBilimleriYanlis = watch("fBilimleriYanlis");
   const fBilimleriNet = calculateNet(fBilimleriDogru, fBilimleriYanlis);
 
-  const diplomaNotu = watch("diplomaNotu")||0;
-  const OBP= watch("OBP") || 0;
+  const diplomaNotu = watch("diplomaNotu") || 0;
+  const OBP = watch("OBP") || 0;
 
   useEffect(() => {
     setTytScores((prevValues: any) => {
@@ -108,13 +112,26 @@ const TYTPuanHesaplama = ({ setTytScores }: Params) => {
         tMatematikNet,
         fBilimleriNet,
         diplomaNotu,
+        isEnroll,
       };
     });
-  }, [turkceNet, sBilimlerNet, tMatematikNet, fBilimleriNet, diplomaNotu]);
+  }, [
+    turkceNet,
+    sBilimlerNet,
+    tMatematikNet,
+    fBilimleriNet,
+    diplomaNotu,
+    isEnroll,
+  ]);
 
   const onSubmit = (data: any) => {
     console.log("data", data);
   };
+
+  useEffect(() => {
+    reset();
+    setIsEnroll(false);
+  }, [toggleReset]);
 
   return (
     <>
@@ -417,7 +434,7 @@ const TYTPuanHesaplama = ({ setTytScores }: Params) => {
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
-                      value={OBP!==0 ? OBP/5 : field.value}
+                      value={OBP !== 0 ? OBP / 5 : field.value}
                     />
                   )}
                 />
@@ -443,11 +460,23 @@ const TYTPuanHesaplama = ({ setTytScores }: Params) => {
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
-                      value={diplomaNotu!==0 ? diplomaNotu*5 : field.value}
+                      value={diplomaNotu !== 0 ? diplomaNotu * 5 : field.value}
                     />
                   )}
                 />
               </span>
+            </div>
+          </div>
+
+          <div className="field grid">
+            <div className="col-12 md:col-1">
+              <Checkbox
+                onChange={(e) => setIsEnroll(e.checked)}
+                checked={isEnroll}
+              ></Checkbox>
+            </div>
+            <div className="col-12 md:col-11 mt-1">
+              Geçen Sene Bir Bölüme Yerleştim
             </div>
           </div>
         </div>
