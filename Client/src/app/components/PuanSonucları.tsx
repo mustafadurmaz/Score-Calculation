@@ -98,10 +98,15 @@ const PuanSonucları = ({
 
     if (tytScores?.isEnroll === false) {
       ekPuan = tytScores?.diplomaNotu * 0.6;
-      ekPuan=+ekPuan.toFixed(3);
+      ekPuan = +ekPuan.toFixed(3);
     } else {
       ekPuan = tytScores?.diplomaNotu * 0.3;
-      ekPuan=+ekPuan.toFixed(3);
+      ekPuan = +ekPuan.toFixed(3);
+    }
+
+    if (tytScores?.diplomaNotu === 0) {
+      alert("Lütfen Diploma Notunuzu Girin!");
+      return;
     }
 
     let tytHamPuan =
@@ -111,7 +116,7 @@ const PuanSonucları = ({
       tytScores?.fBilimleriNet * 3.06 +
       141.9;
 
-      tytHamPuan=+tytHamPuan.toFixed(3);
+    tytHamPuan = +tytHamPuan.toFixed(3);
 
     let sayHamPuan =
       tytScores?.turkceNet * 1.19 +
@@ -124,7 +129,7 @@ const PuanSonucları = ({
       aytScores?.biyolojiNet * 3.1 +
       128.23;
 
-      sayHamPuan=+sayHamPuan.toFixed(3);
+    sayHamPuan = +sayHamPuan.toFixed(3);
 
     let eaHamPuan =
       tytScores?.turkceNet * 1.17 +
@@ -137,7 +142,7 @@ const PuanSonucları = ({
       aytScores?.cografya1Net * 3.06 +
       128.96;
 
-      eaHamPuan=+eaHamPuan.toFixed(3);
+    eaHamPuan = +eaHamPuan.toFixed(3);
 
     let sozHamPuan =
       tytScores?.turkceNet * 1.13 +
@@ -153,7 +158,7 @@ const PuanSonucları = ({
       aytScores?.dinNet * 2.81 +
       128.44;
 
-      sozHamPuan=+sozHamPuan.toFixed(3);
+    sozHamPuan = +sozHamPuan.toFixed(3);
 
     let newResultsTYT = {
       puanTuru: "TYT",
