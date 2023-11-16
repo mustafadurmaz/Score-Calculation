@@ -11,6 +11,7 @@ import { Controller, useForm } from "react-hook-form";
 import TYTPuanHesaplama from "../../../components/TYTPuanHesaplama";
 import AYTPuanHesaplama from "../../../components/AYTPuanHesaplama";
 import PuanSonucları from "../../../components/PuanSonucları";
+import UniversityDataTable from "../../../components/UniversityDataTable";
 
 const YKSPage = () => {
   const [toggleReset, setToggleReset] = useState<boolean>(true);
@@ -79,6 +80,10 @@ const YKSPage = () => {
             toggleReset={toggleReset}
             setToggleReset={setToggleReset}
           />
+        </div>
+
+        <div className="col-12">
+          <UniversityDataTable />
         </div>
       </div>
     </>
