@@ -13,7 +13,7 @@ import AYTPuanHesaplama from "../../../components/AYTPuanHesaplama";
 import PuanSonucları from "../../../components/PuanSonucları";
 import UniversityDataTable from "../../../components/UniversityDataTable";
 
-const YKSPage = () => {
+const KPSSPage = () => {
   const [toggleReset, setToggleReset] = useState<boolean>(true);
   const [tytScores, setTytScores] = useState({
     turkceNet: 0,
@@ -90,4 +90,4 @@ const YKSPage = () => {
   );
 };
 
-export default YKSPage;
+export default KPSSPage;
