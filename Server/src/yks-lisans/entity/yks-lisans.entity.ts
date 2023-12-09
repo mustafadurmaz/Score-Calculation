@@ -1,77 +1,83 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from 'typeorm';
 
-@Entity('2023_OSYM_LISANS')
+@Entity('YKSLisans')
 export class YksLisansEntity {
   @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ type: 'int' })
   ProgramKodu: number;
 
-  @Column({ nullable: true})
+  @Column({ type: 'varchar', length: 512 })
   UniversiteTuru: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'varchar', length: 512 })
   Sehir: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'varchar', length: 512 })
   UniversiteAdi: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'varchar', length: 512 })
   FakulteYuksekOkulAdi: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'varchar', length: 512 })
   ProgramAdi: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'varchar', length: 512 })
   PuanTuru: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'int' })
   Kontenjan: number;
 
-  @Column({ nullable: true})
+  @Column({ type: 'int' })
   Yerlesen: number;
 
-  @Column({ nullable: true})
+  @Column({ type: 'double' })
   TabanPuan: number;
 
-  @Column({ nullable: true})
+  @Column({ type: 'double' })
+  TavanPuan: number;
+
+  @Column({ type: 'int' })
   OkulBirincisiYerlestirmeKontenjani: number;
 
-  @Column({ nullable: true})
-  OkulBirincisiYerlestirmeYerlesen: number;
+  @Column({ type: 'varchar', length: 512 })
+  OkulBirincisiYerlestirmeYerlesen: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'double' })
   OkulBirincisiYerlestirmeEnKucukPuan: number;
 
-  @Column({ nullable: true})
+  @Column({ type: 'double' })
   OkulBirincisiYerlestirmeEnBuyukPuan: number;
 
-  @Column({ nullable: true})
-  DepremzedeYerlestirmeKontenjan: number;
+  @Column({ type: 'varchar', length: 512 })
+  DepremzedeYerlestirmeKontenjan: string;
 
-  @Column({ nullable: true})
-  DepremzedeYerlestirmeYerlesen: number;
+  @Column({ type: 'varchar', length: 512 })
+  DepremzedeYerlestirmeYerlesen: string;
 
-  @Column({ nullable: true})
+  @Column({ type: 'double' })
   DepremzedeYerlestirmeEnKucukPuan: number;
 
-  @Column({ nullable: true})
+  @Column({ type: 'double' })
   DepremzedeYerlestirmeEnBuyukPuan: number;
 
-  // @Column({ nullable: true})
-  // _34YasUstuKadinYerlestirmeKontenjan: number;
+  @Column({ type: 'int', name: '_34YasUstuKadinYerlestirmeKontenjan' })
+  _34YasUstuKadinYerlestirmeKontenjan: number;
 
-  // @Column({ nullable: true})
-  // _34YasUstuKadinYerlestirmeYerlesen: number;
+  @Column({ type: 'varchar', length: 512 })
+  _34YasUstuKadinYerlestirmeYerlesen: string;
 
-  // @Column({ nullable: true})
-  // _34YasUstuKadinYerlestirmeEnKucukPuan: number;
+  @Column({ type: 'double' })
+  _34YasUstuKadinYerlestirmeEnKucukPuan: number;
 
-  // @Column({ nullable: true})
-  // _34YasUstuKadinYerlestirmeEnBuyukPuan: number;
+  @Column({ type: 'double' })
+  _34YasUstuKadinYerlestirmeEnBuyukPuan: number;
 
-  // @Column({ nullable: true})
-  // Aktif: number;
+  @Column({ type: 'varchar', length: 512 })
+  Aktif: string;
 
-  // @Column({ nullable: true})
-  // Yil: number;
+  @Column({ type: 'int' })
+  Yil: number;
 
 }
