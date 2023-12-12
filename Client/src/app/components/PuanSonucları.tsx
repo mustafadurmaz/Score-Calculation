@@ -281,9 +281,15 @@ const PuanSonucları = ({
         <Button
           label="Temizle"
           onClick={clearScores}
-          className="p-button-danger w-5 ml-4"
+          className="p-button-danger w-5 ml-6"
         />
       </div>
+      <Button
+          label="Üniversite Bul"
+          onClick={scoreCalculate}
+          className="p-button-info w-10 mt-3 ml-6"
+          autoFocus
+        />
     </>
   );
 };
