@@ -28,9 +28,11 @@ interface ITYTInputs {
 
 interface Params {
   tytScores?: any;
+  showUniversityTable: boolean;
+  setShowUniversityTable:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UniversityTable = ({ tytScores }: Params) => {
+const UniversityTable = ({ tytScores, showUniversityTable, setShowUniversityTable }: Params) => {
   const [universities, setUniversities] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -84,8 +86,8 @@ const UniversityTable = ({ tytScores }: Params) => {
     <>
       <Dialog
         header="Üniversiteler"
-        visible={visible}
-        onHide={() => setVisible(false)}
+        visible={showUniversityTable}
+        onHide={() => setShowUniversityTable(false)}
         style={{ width: "50vw" }}
         breakpoints={{ "960px": "75vw", "641px": "100vw" }}
       >

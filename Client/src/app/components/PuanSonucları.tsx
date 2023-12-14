@@ -10,6 +10,7 @@ import { Column } from "primereact/column";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
+import UniversityTable from "./UniversityTable";
 
 interface ITYTInputs {
   turkceDogru?: number;
@@ -45,6 +46,8 @@ const PuanSonucları = ({
   toggleReset,
   setToggleReset,
 }: Params) => {
+  const [showUniversityTable, setShowUniversityTable] =
+    useState<boolean>(false);
   const [scoreResults, setScoreResults] = useState([
     {
       puanTuru: "TYT",
@@ -283,13 +286,17 @@ const PuanSonucları = ({
           onClick={clearScores}
           className="p-button-danger w-5 ml-6"
         />
-      </div>
-      <Button
+        <Button
           label="Üniversite Bul"
-          onClick={scoreCalculate}
+          onClick={() => {
+            setShowUniversityTable(true);
+          }}
           className="p-button-info w-10 mt-3 ml-6"
           autoFocus
         />
+      </div>
+
+      {showUniversityTable === true && <UniversityTable showUniversityTable={showUniversityTable} setShowUniversityTable={setShowUniversityTable} />}
     </>
   );
 };
