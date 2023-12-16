@@ -19,16 +19,46 @@ export class YksLisansService {
   async filterUsers(
     filters: Record<string, any>,
     page = 1,
-    limit = 10
+    limit = 10, 
+    sortByField: string = 'Sehir', 
+    sortOrder: 'ASC' | 'DESC' = 'ASC'
   ): Promise<{ universities: YksLisansEntity[]; total: number }> {
     const query = this.yksLisansRepository.createQueryBuilder("yks");
 
+    if (filters.ProgramKodu) {
+      query.andWhere("yks.ProgramKodu LIKE :ProgramKodu", { ProgramKodu: `%${filters.ProgramKodu}%` });
+    }
+
+    if (filters.UniversiteAdi) {
+      query.andWhere("yks.UniversiteAdi LIKE :UniversiteAdi", { UniversiteAdi: `%${filters.UniversiteAdi}%` });
+    }
+
+    if (filters.ProgramAdi) {
+      query.andWhere("yks.ProgramAdi LIKE :ProgramAdi", { ProgramAdi: `%${filters.ProgramAdi}%` });
+    }
+
     if (filters.Sehir) {
-      query.andWhere("user.Sehir LIKE :Sehir", { Sehir: `%${filters.Sehir}%` });
+      query.andWhere("yks.Sehir LIKE :Sehir", { Sehir: `%${filters.Sehir}%` });
+    }
+
+    if (filters.Sehir) {
+      query.andWhere("yks.Sehir LIKE :Sehir", { Sehir: `%${filters.Sehir}%` });
+    }
+
+    if (filters.Sehir) {
+      query.andWhere("yks.Sehir LIKE :Sehir", { Sehir: `%${filters.Sehir}%` });
+    }
+
+    if (filters.Sehir) {
+      query.andWhere("yks.Sehir LIKE :Sehir", { Sehir: `%${filters.Sehir}%` });
+    }
+
+    if (filters.Sehir) {
+      query.andWhere("yks.Sehir LIKE :Sehir", { Sehir: `%${filters.Sehir}%` });
     }
 
     if (filters.email) {
-      query.andWhere("user.email LIKE :email", { email: `%${filters.email}%` });
+      query.andWhere("yks.email LIKE :email", { email: `%${filters.email}%` });
     }
 
     // Diğer filtreler için de benzer şekilde devam edilebilir.
@@ -38,6 +68,7 @@ export class YksLisansService {
     const universities = await query
       .take(limit) // Her sayfada gösterilecek kullanıcı sayısı
       .skip((page - 1) * limit) // Atlanacak kayıt sayısı
+      .orderBy(`yks.${sortByField}`, sortOrder)
       .getMany();
 
     return { universities, total };

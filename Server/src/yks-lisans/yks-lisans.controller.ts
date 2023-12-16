@@ -24,13 +24,17 @@ export class YksLisansController {
     @Query("name") name: string,
     @Query("email") email: string,
     @Query("page", ParseIntPipe) page = 1,
-    @Query("limit", ParseIntPipe) limit = 10
+    @Query("limit", ParseIntPipe) limit = 10,
+    @Query('sortByField') sortByField: string = 'Sehir',
+    @Query('sortOrder') sortOrder: 'ASC' | 'DESC' = 'ASC',
   ) {
     const filters = { name, email };
     const result = await this.yksLisansService.filterUsers(
       filters,
       page,
-      limit
+      limit,
+      sortByField, 
+      sortOrder
     );
     return result;
   }
