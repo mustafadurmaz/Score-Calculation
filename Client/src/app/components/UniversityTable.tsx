@@ -29,12 +29,24 @@ interface ITYTInputs {
 interface Params {
   tytScores?: any;
   showUniversityTable: boolean;
-  setShowUniversityTable:React.Dispatch<React.SetStateAction<boolean>>;
+  setShowUniversityTable: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UniversityTable = ({ tytScores, showUniversityTable, setShowUniversityTable }: Params) => {
+const UniversityTable = ({
+  tytScores,
+  showUniversityTable,
+  setShowUniversityTable,
+}: Params) => {
   const [universities, setUniversities] = useState([]);
+  const [totalUniversities, setTotalUniversities] = useState(500);
   const [loading, setLoading] = useState(false);
+  const [lazyParams, setLazyParams] = useState({
+    first: 0,
+    rows: 10,
+    page: 0,
+    sortField: null || undefined,
+    sortOrder: 1,
+  });
 
   const schema = yup.object({});
 
@@ -57,10 +69,14 @@ const UniversityTable = ({ tytScores, showUniversityTable, setShowUniversityTabl
 
   const getUniversities = (isClear = false) => {
     setLoading(true);
-    YKSService.getAllUniversities()
+    YKSService.getAllUniversities({
+      page: lazyParams.page + 1,
+      limit: lazyParams.rows,
+    })
       .then((response) => {
         console.log("component response data", response.data);
-        setUniversities(response.data.data);
+        setUniversities(response.data.universities);
+        setTotalUniversities(response.data.total)
         setLoading(false);
       })
       .catch((err) => {
@@ -76,10 +92,25 @@ const UniversityTable = ({ tytScores, showUniversityTable, setShowUniversityTabl
 
   useEffect(() => {
     getUniversities();
-  }, []);
+  }, [lazyParams]);
 
   const onSubmit = (data: any) => {
     console.log("data", data);
+  };
+
+  const onPage = (event: any) => {
+    setLazyParams(event);
+  };
+
+  const onSort = (event: any) => {
+    setLazyParams((prev) => {
+      return { ...prev, ...event };
+    });
+  };
+
+  const countTemplate = () => {
+    const counts = ("Showing {first} to {last} of {totalRecords} records");
+    return loading === true ? "Loading..." : counts;
   };
 
   return (
@@ -95,9 +126,16 @@ const UniversityTable = ({ tytScores, showUniversityTable, setShowUniversityTabl
           <DataTable
             value={universities}
             paginator
-            rows={5}
-            rowsPerPageOptions={[5, 10, 25, 50]}
+            rowsPerPageOptions={[10, 25, 50]}
             tableStyle={{ minWidth: "50rem" }}
+            onPage={onPage}
+            onSort={onSort}
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            totalRecords={totalUniversities}
+            first={lazyParams.first}
+            rows={lazyParams.rows}
+            currentPageReportTemplate={countTemplate()}
+            lazy
           >
             <Column
               field="UniversiteAdi"

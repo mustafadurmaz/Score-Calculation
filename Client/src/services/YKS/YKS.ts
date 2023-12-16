@@ -2,8 +2,13 @@ import axios from "axios";
 
 const url = "http://localhost:3000/yks-lisans";
 
-const getAllUniversities = async () => {
-    return axios.get(url);
+interface PaginationParams {
+  page?: number;
+  limit?: number;
+}
+
+const getAllUniversities = async (query: PaginationParams) => {
+    return axios.get(url+"/universities"+`?page=${query.page}&limit=${query.limit}`);
   };
 
 
