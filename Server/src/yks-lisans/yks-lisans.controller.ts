@@ -25,7 +25,7 @@ export class YksLisansController {
     @Query("email") email: string,
     @Query("page", ParseIntPipe) page = 1,
     @Query("limit", ParseIntPipe) limit = 10,
-    @Query('sortByField') sortByField: string = 'Sehir',
+    @Query('sortByField') sortByField: string = 'UniversiteAdi',
     @Query('sortOrder') sortOrder: 'ASC' | 'DESC' = 'ASC',
   ) {
     const filters = { name, email };

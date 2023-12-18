@@ -119,7 +119,7 @@ const UniversityTable = ({
         header="Üniversiteler"
         visible={showUniversityTable}
         onHide={() => setShowUniversityTable(false)}
-        style={{ width: "50vw" }}
+        style={{ width: "100vh" }}
         breakpoints={{ "960px": "75vw", "641px": "100vw" }}
       >
         <div className="card">
@@ -138,21 +138,54 @@ const UniversityTable = ({
             lazy
           >
             <Column
+              field="ProgramKodu"
+              header="Program Kodu"
+              style={{ width: "25%" }}
+            ></Column>
+            <Column
+              field="UniversiteTuru"
+              header="Universite Türü"
+              style={{ width: "25%" }}
+            ></Column>
+            <Column
               field="UniversiteAdi"
               header="Üniversite"
               style={{ width: "25%" }}
             ></Column>
+            
             <Column
               field="ProgramAdi"
-              header="Bölüm"
+              header="Program Adı"
+              style={{ width: "25%" }}
+            ></Column>
+            <Column
+              field="FakulteYuksekOkulAdi"
+              header="Fakülte"
+              style={{ width: "25%" }}
+            ></Column>
+            <Column field="Sehir" header="İl" style={{ width: "25%" }}></Column>
+            <Column
+              field="PuanTuru"
+              header="Puan Türü"
+              style={{ width: "25%" }}
+            ></Column>
+            <Column
+              field="Kontenjan"
+              header="Kontenjan"
               style={{ width: "25%" }}
             ></Column>
             <Column
               field="TabanPuan"
-              header="Puan"
+              header="Taban Puan"
               style={{ width: "25%" }}
             ></Column>
-            <Column field="Sehir" header="İl" style={{ width: "25%" }}></Column>
+            <Column
+              field="TavanPuan"
+              header="Tavan Puan"
+              style={{ width: "25%" }}
+            ></Column>
+            
+            
           </DataTable>
         </div>
       </Dialog>

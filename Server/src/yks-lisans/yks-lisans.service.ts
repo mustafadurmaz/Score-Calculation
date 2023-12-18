@@ -20,7 +20,7 @@ export class YksLisansService {
     filters: Record<string, any>,
     page = 1,
     limit = 10, 
-    sortByField: string = 'Sehir', 
+    sortByField: string = 'UniversiteAdi', 
     sortOrder: 'ASC' | 'DESC' = 'ASC'
   ): Promise<{ universities: YksLisansEntity[]; total: number }> {
     const query = this.yksLisansRepository.createQueryBuilder("yks");
