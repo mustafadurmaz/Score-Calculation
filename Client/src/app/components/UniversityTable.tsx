@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 
 import YKSService from "../../services/YKS/YKS";
+import UniversityFİlter from "./UniversityFİlter";
 
 interface ITYTInputs {
   turkceDogru?: number;
@@ -122,7 +123,8 @@ const UniversityTable = ({
         style={{ width: "100vh" }}
         breakpoints={{ "960px": "75vw", "641px": "100vw" }}
       >
-        <div className="card">
+        <UniversityFİlter />
+        <div className="card mt-2">
           <DataTable
             value={universities}
             paginator

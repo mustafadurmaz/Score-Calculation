@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { Panel } from "primereact/panel";
 import { DataTable } from "primereact/datatable";
+import { Dialog } from "primereact/dialog";
 import { Column } from "primereact/column";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -27,11 +29,25 @@ interface ITYTInputs {
 
 interface Params {
   tytScores?: any;
+  showUniversityTable?: boolean;
+  setShowUniversityTable?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UniversityDataTable = ({ tytScores }: Params) => {
+const UniversityFİlter = ({
+  tytScores,
+  showUniversityTable,
+  setShowUniversityTable,
+}: Params) => {
   const [universities, setUniversities] = useState([]);
+  const [totalUniversities, setTotalUniversities] = useState(500);
   const [loading, setLoading] = useState(false);
+  const [lazyParams, setLazyParams] = useState({
+    first: 0,
+    rows: 10,
+    page: 0,
+    sortField: null || undefined,
+    sortOrder: 1,
+  });
 
   const schema = yup.object({});
 
@@ -52,54 +68,23 @@ const UniversityDataTable = ({ tytScores }: Params) => {
     },
   });
 
-  const getUniversities = (isClear = false) => {
-    setLoading(true);
-
-  };
-  
-  useEffect(() => {
-    getUniversities();
-  },[]);
-
-
-  const onSubmit = (data: any) => {
-    console.log("data", data);
-  };
+  useEffect(() => {}, []);
 
   return (
     <>
-      <div className="card">
-        <DataTable
-          value={universities}
-          paginator
-          rows={5}
-          rowsPerPageOptions={[5, 10, 25, 50]}
-          tableStyle={{ minWidth: "50rem" }}
-        >
-          <Column
-            field="UniversiteAdi"
-            header="Üniversite"
-            style={{ width: "25%" }}
-          ></Column>
-          <Column
-            field="ProgramAdi"
-            header="Bölüm"
-            style={{ width: "25%" }}
-          ></Column>
-          <Column
-            field="TabanPuan"
-            header="Puan"
-            style={{ width: "25%" }}
-          ></Column>
-          <Column
-            field="Sehir"
-            header="İl"
-            style={{ width: "25%" }}
-          ></Column>
-        </DataTable>
-      </div>
+      <Panel header="Filtrele" toggleable>
+        <p className="m-0">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </Panel>
     </>
   );
 };
 
-export default UniversityDataTable;
+export default UniversityFİlter;
