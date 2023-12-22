@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../app/hook";
 import useToast from "../../hooks/useToast";
 import { Node } from "../../interfaces/node";
-// import WorkspaceGroupsService from "../../services/workspaceGroups";
 import WorkSpaceService from "../../services/workspace";
 
 interface Params {
@@ -67,18 +66,7 @@ const CustomCities = ({
       // // If the selected person is not on the displayed page, add the selected person to the list
       // if (hasContact === false && data !== undefined && data !== "") {
 
-      //   ContactService.nodeInfoById(data).then(res2 => {
 
-      //     let temp = {
-      //       email: res2.data.properties.email,
-      //       key: res2.data.properties.key,
-      //       id: res2.data.id
-      //     }
-      //     setContactData((prev: any) => [...prev, temp])
-      //   })
-      //     .catch((err) => {
-      //     })
-      // }
     });
   };
 
