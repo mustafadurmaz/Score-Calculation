@@ -39,10 +39,7 @@ const CustomCities = ({
   setSelectedGroup,
 }: Params) => {
   const [workSpaceGroupData, setWorkSpaceGroupData] = useState<Node[]>([]);
-  const auth = useAppSelector((state) => state.auth);
-  const [realm, setRealm] = useState(auth.auth.realm);
   const { toast } = useToast();
-  const { t } = useTranslation(["common"]);
 
   const getWorkSpaceGroup = async () => {
     let params = {
