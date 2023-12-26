@@ -7,7 +7,7 @@ import { Controller } from "react-hook-form";
 
 // import useToast from "../../hooks/useToast";
 
-import WorkSpaceService from "../../services/workspace";
+import WorkSpaceService from "../../services/cities/cities";
 
 interface Params {
   fieldLabel: string;
