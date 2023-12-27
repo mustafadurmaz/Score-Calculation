@@ -7,7 +7,7 @@ import { Controller } from "react-hook-form";
 
 // import useToast from "../../hooks/useToast";
 
-import WorkSpaceService from "../../services/cities/cities";
+import CityService from "../../services/cities/cities";
 
 interface Params {
   fieldLabel: string;
@@ -39,7 +39,6 @@ const CustomCities = ({
   setSelectedGroup,
 }: Params) => {
   const [workSpaceGroupData, setWorkSpaceGroupData] = useState<Node[]>([]);
-  const { toast } = useToast();
 
   const getWorkSpaceGroup = async () => {
     let params = {
@@ -47,7 +46,7 @@ const CustomCities = ({
       label: selectedLabel,
     };
 
-    await WorkSpaceService.findWorkSpaceUsers(params).then((res) => {
+    await CityService.getAllCities().then((res) => {
       console.log(res.data);
 
       let tempWorkSpaceGroups = res.data.map((child: any) => ({
