@@ -53,10 +53,10 @@ const YKSPage = () => {
     defaultValues: {},
   });
 
-  console.log("tytScores", tytScores);
+
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+
   };
 
   return (
@@ -82,9 +82,9 @@ const YKSPage = () => {
           />
         </div>
 
-        <div className="col-12">
+        {/* <div className="col-12">
           <UniversityDataTable />
-        </div>
+        </div> */}
       </div>
     </>
   );

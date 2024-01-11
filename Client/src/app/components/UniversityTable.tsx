@@ -30,6 +30,7 @@ interface ITYTInputs {
 interface Params {
   tytScores?: any;
   showUniversityTable: boolean;
+  scoreResults?: any;
   setShowUniversityTable: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -37,6 +38,7 @@ const UniversityTable = ({
   tytScores,
   showUniversityTable,
   setShowUniversityTable,
+  scoreResults
 }: Params) => {
   const [universities, setUniversities] = useState([]);
   const [totalUniversities, setTotalUniversities] = useState(500);
@@ -70,25 +72,22 @@ const UniversityTable = ({
 
   const getUniversities = (isClear = false) => {
     setLoading(true);
-    YKSService.getAllUniversities({
-      page: lazyParams.page + 1,
-      limit: lazyParams.rows,
-    })
-      .then((response) => {
-        console.log("component response data", response.data);
-        setUniversities(response.data.universities);
-        setTotalUniversities(response.data.total)
-        setLoading(false);
-      })
-      .catch((err) => {
-        // toast?.current?.show({
-        //   severity: "error",
-        //   summary: t("Error"),
-        //   detail: err.response ? err.response.data.message : err.message,
-        //   life: 3000,
-        // });
-        setLoading(false);
-      });
+    // YKSService.getAllUniversities()
+    //   .then((response) => {
+
+    //     setUniversities(response.data);
+    //     setTotalUniversities(response.data.total)
+    //     setLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     // toast?.current?.show({
+    //     //   severity: "error",
+    //     //   summary: t("Error"),
+    //     //   detail: err.response ? err.response.data.message : err.message,
+    //     //   life: 3000,
+    //     // });
+    //     setLoading(false);
+    //   });
   };
 
   useEffect(() => {
@@ -96,7 +95,7 @@ const UniversityTable = ({
   }, [lazyParams]);
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+
   };
 
   const onPage = (event: any) => {
@@ -123,7 +122,12 @@ const UniversityTable = ({
         style={{ width: "100vh" }}
         breakpoints={{ "960px": "75vw", "641px": "100vw" }}
       >
-        <UniversityFİlter />
+        <UniversityFİlter 
+          lazyParams = {lazyParams}
+          setTotalUniversities = {setTotalUniversities}
+          setUniversities = {setUniversities}
+          scoreResults = {scoreResults}
+        />
         <div className="card mt-2">
           <DataTable
             value={universities}
@@ -139,50 +143,46 @@ const UniversityTable = ({
             currentPageReportTemplate={countTemplate()}
             lazy
           >
+
             <Column
-              field="ProgramKodu"
-              header="Program Kodu"
-              style={{ width: "25%" }}
-            ></Column>
-            <Column
-              field="UniversiteTuru"
+              field="universiteTuru"
               header="Universite Türü"
               style={{ width: "25%" }}
             ></Column>
             <Column
-              field="UniversiteAdi"
+              field="universiteAdi"
               header="Üniversite"
               style={{ width: "25%" }}
             ></Column>
             
             <Column
-              field="ProgramAdi"
+              field="programAdi"
               header="Program Adı"
               style={{ width: "25%" }}
             ></Column>
             <Column
-              field="FakulteYuksekOkulAdi"
+              field="fakulte"
               header="Fakülte"
               style={{ width: "25%" }}
             ></Column>
-            <Column field="Sehir" header="İl" style={{ width: "25%" }}></Column>
+            <Column field="sehir" header="İl" style={{ width: "25%" }}></Column>
             <Column
-              field="PuanTuru"
+              field="puanTuru"
               header="Puan Türü"
               style={{ width: "25%" }}
             ></Column>
             <Column
-              field="Kontenjan"
+              field="kontenjan"
               header="Kontenjan"
               style={{ width: "25%" }}
             ></Column>
             <Column
-              field="TabanPuan"
+              field="tabanPuan"
               header="Taban Puan"
               style={{ width: "25%" }}
             ></Column>
             <Column
-              field="TavanPuan"
+              field="tavanPuan"
               header="Tavan Puan"
               style={{ width: "25%" }}
             ></Column>

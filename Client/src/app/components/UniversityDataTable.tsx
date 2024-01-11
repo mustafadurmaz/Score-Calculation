@@ -63,7 +63,7 @@ const UniversityDataTable = ({ tytScores }: Params) => {
 
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+
   };
 
   return (

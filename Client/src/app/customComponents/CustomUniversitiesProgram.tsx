@@ -21,7 +21,7 @@ interface Params {
   isDisabled?: boolean;
 }
 
-const CustomCities = ({
+const CustomUniversitiesProgram = ({
   fieldLabel,
   name,
   placeholder,
@@ -34,7 +34,7 @@ const CustomCities = ({
 
   const getWorkSpaceGroup = async () => {
 
-    await YKSService.getAllUniversitiesCity().then((res) => {
+    await YKSService.getAllUniversitiesProgram().then((res) => {
 
       setWorkSpaceGroupData(res.data);
 
@@ -114,7 +114,7 @@ const CustomCities = ({
           <Dropdown
             value={field.value}
             options={workSpaceGroupData}
-            optionLabel="sehir"
+            optionLabel="programAdi"
             onChange={(e) => {
               field.onChange(e.value);
             }}
@@ -131,4 +131,4 @@ const CustomCities = ({
   );
 };
 
-export default CustomCities;
+export default CustomUniversitiesProgram;

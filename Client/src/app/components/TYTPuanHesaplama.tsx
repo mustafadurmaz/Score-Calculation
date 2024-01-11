@@ -125,7 +125,7 @@ const TYTPuanHesaplama = ({ setTytScores, toggleReset }: Params) => {
   ]);
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+
   };
 
   useEffect(() => {

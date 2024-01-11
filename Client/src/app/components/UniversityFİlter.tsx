@@ -9,6 +9,15 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 
 import YKSService from "../../services/YKS/YKS";
+import CustomCities from "../customComponents/CustomCities";
+import CustomUniversitiesName from "../customComponents/CustomUniversitiesName";
+import CustomUniversitiesType from "../customComponents/CustomUniversitiesType";
+import CustomUniversitiesProgram from "../customComponents/CustomUniversitiesProgram";
+import CustomScoreType from "../customComponents/CustomScoreType";
+
+
+
+import { Button } from "primereact/button";
 
 interface ITYTInputs {
   turkceDogru?: number;
@@ -28,26 +37,24 @@ interface ITYTInputs {
 }
 
 interface Params {
-  tytScores?: any;
+  lazyParams?: any;
+  setUniversities?: any;
+  setTotalUniversities?: any;
+  scoreResults?: any;
   showUniversityTable?: boolean;
   setShowUniversityTable?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UniversityFİlter = ({
-  tytScores,
+  setUniversities,
+  lazyParams,
+  setTotalUniversities,
   showUniversityTable,
   setShowUniversityTable,
+  scoreResults
 }: Params) => {
-  const [universities, setUniversities] = useState([]);
-  const [totalUniversities, setTotalUniversities] = useState(500);
   const [loading, setLoading] = useState(false);
-  const [lazyParams, setLazyParams] = useState({
-    first: 0,
-    rows: 10,
-    page: 0,
-    sortField: null || undefined,
-    sortOrder: 1,
-  });
+
 
   const schema = yup.object({});
 
@@ -63,25 +70,94 @@ const UniversityFİlter = ({
     mode: "onBlur",
     resolver: yupResolver(schema),
     defaultValues: {
-      turkceNet: 0,
-      turkceDogru: 0,
+      // turkceNet: 0,
+      // turkceDogru: 0,
     },
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    handleSubmit(onSubmit)();
+  }, [
+    lazyParams
+  ]);
 
+
+  const onSubmit = (data:any) => {
+
+    let params = {
+      universiteTuru: data?.universitiesType?.universiteTuru||"",
+      sehir: data?.city?.sehir||"",
+      universiteAdi: data?.universitiesName?.universiteAdi||"",
+      // fakulte: string;
+      programAdi: data?.universitiesProgram?.programAdi||"",
+      puanTuru: data?.scoreType?.puanTuru.split(' ')[0],
+      // tabanPuan: number;
+      tavanPuan: data?.scoreType?.yerlestirmePuani
+    }
+
+    let pagination = {
+      pageSize:lazyParams.rows,
+      pageIndex:lazyParams.page
+    }
+
+    YKSService.getFilterUniversities( params,pagination)
+      .then((response) => {
+        setUniversities(response.data);
+        setTotalUniversities(response.data.total)
+        // setTotalUniversities(response.data.count) data saısını ekleyince bunu açacağım
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  }
   return (
     <>
-      <Panel header="Filtrele" toggleable>
-        <p className="m-0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+      <Panel header="Filtrele" toggleable>  
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <CustomUniversitiesName
+          fieldLabel="Üniversiteler"
+          name="universitiesName"
+          control={control}
+          errors={errors}
+          placeholder="Üniversite Seçiniz"
+        />
+        <CustomUniversitiesProgram
+          fieldLabel="Üniversite Programları"
+          name="universitiesProgram"
+          control={control}
+          errors={errors}
+          placeholder="Üniversite Programı Seçiniz"
+        />
+        <CustomCities
+          fieldLabel="İller"
+          name="city"
+          control={control}
+          errors={errors}
+          placeholder="İl Seçiniz"
+        />
+        <CustomUniversitiesType
+          fieldLabel="Üniversite Türü"
+          name="universitiesType"
+          control={control}
+          errors={errors}
+          placeholder="Üniversite Türü Seçiniz"
+        />
+        <CustomScoreType
+          fieldLabel="Üniversite Puan Türü"
+          name="scoreType"
+          control={control}
+          errors={errors}
+          placeholder="Üniversite Puan Türü Seçiniz"
+          scoreResults ={scoreResults}
+        />      
+        <Button
+          label="Arama Yap"
+          type="submit"
+          className="p-button-success w-5 ml-4"
+          autoFocus
+        />
+        </form>
       </Panel>
     </>
   );

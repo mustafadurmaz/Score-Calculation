@@ -55,7 +55,7 @@ const ListDemo = () => {
     if (!dataViewValue) {
       setFilteredValue([]);
     } else {
-      console.log(dataViewValue);
+
       const filtered = dataViewValue!.filter((product) => {
         return product.name.toLowerCase().includes(value);
       });

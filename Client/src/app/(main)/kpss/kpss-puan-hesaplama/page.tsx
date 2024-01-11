@@ -53,10 +53,10 @@ const KPSSPage = () => {
     defaultValues: {},
   });
 
-  console.log("tytScores", tytScores);
+
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+
   };
 
   return (

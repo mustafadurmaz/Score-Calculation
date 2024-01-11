@@ -199,7 +199,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
   }, [toggleReset]);
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+
   };
 
   return (

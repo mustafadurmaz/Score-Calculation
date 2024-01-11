@@ -71,7 +71,7 @@ const PuanSonucları = ({
     },
   ]);
 
-  console.log("scoreResults", scoreResults);
+
 
   const schema = yup.object({});
 
@@ -93,7 +93,7 @@ const PuanSonucları = ({
   });
 
   const onSubmit = (data: any) => {
-    console.log("data", data);
+
   };
 
   const scoreCalculate = () => {
@@ -296,7 +296,10 @@ const PuanSonucları = ({
         />
       </div>
 
-      {showUniversityTable === true && <UniversityTable showUniversityTable={showUniversityTable} setShowUniversityTable={setShowUniversityTable} />}
+      {showUniversityTable === true && <UniversityTable 
+      showUniversityTable={showUniversityTable} 
+      setShowUniversityTable={setShowUniversityTable}
+      scoreResults = {scoreResults} />}
     </>
   );
 };
