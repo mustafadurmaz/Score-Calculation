@@ -278,7 +278,6 @@ const ButtonDemo = () => {
         </div>
 
         <div className="card">
-          <h5>Loading</h5>
           <div className="flex flex-wrap gap-2">
             <Button
               label="Search"

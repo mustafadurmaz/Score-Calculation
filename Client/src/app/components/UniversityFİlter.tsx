@@ -14,6 +14,7 @@ import CustomUniversitiesName from "../customComponents/CustomUniversitiesName";
 import CustomUniversitiesType from "../customComponents/CustomUniversitiesType";
 import CustomUniversitiesProgram from "../customComponents/CustomUniversitiesProgram";
 import CustomScoreType from "../customComponents/CustomScoreType";
+import CustomFacultyName from "../customComponents/CustomFacultyName";
 
 
 
@@ -88,6 +89,7 @@ const UniversityFİlter = ({
       universiteTuru: data?.universitiesType?.universiteTuru||"",
       sehir: data?.city?.sehir||"",
       universiteAdi: data?.universitiesName?.universiteAdi||"",
+      fakulte: data?.facultyName?.fakulteler||"",
       // fakulte: string;
       programAdi: data?.universitiesProgram?.programAdi||"",
       puanTuru: data?.scoreType?.puanTuru.split(' ')[0],
@@ -100,16 +102,32 @@ const UniversityFİlter = ({
       pageIndex:lazyParams.page
     }
 
-    YKSService.getFilterUniversities( params,pagination)
+    if(params.puanTuru == "TYT"){
+      YKSService.getFilterUniversitiesOnLisans( params,pagination)
       .then((response) => {
         setUniversities(response.data);
-        setTotalUniversities(response.data.total)
-        // setTotalUniversities(response.data.count) data saısını ekleyince bunu açacağım
+        setTotalUniversities(response.data.total) 
+        setTotalUniversities(response.data[0].toplamSatirSayisi) 
         setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
       });
+    }
+    else{
+      YKSService.getFilterUniversities( params,pagination)
+      .then((response) => {
+        setUniversities(response.data);
+        setTotalUniversities(response.data.total) 
+        setTotalUniversities(response.data[0].toplamSatirSayisi) 
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+    }
+
+
   }
   return (
     <>
@@ -142,6 +160,13 @@ const UniversityFİlter = ({
           control={control}
           errors={errors}
           placeholder="Üniversite Türü Seçiniz"
+        />
+        <CustomFacultyName
+          fieldLabel="Fakülteler"
+          name="facultyName"
+          control={control}
+          errors={errors}
+          placeholder="Fakülte Türü Seçiniz"
         />
         <CustomScoreType
           fieldLabel="Üniversite Puan Türü"

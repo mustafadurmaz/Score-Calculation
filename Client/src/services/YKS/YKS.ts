@@ -18,6 +18,7 @@ interface UniversityFilterParams {
 const getAllUniversities = async (params:PaginationParams) => {
     return axios.post("https://localhost:44364/api/OssLisans/GetAllList"+ `?pageIndex=${params.pageIndex}&pageSize=${params.pageSize}`);
   };
+
 const getFilterUniversities = async (params:UniversityFilterParams,pagination:PaginationParams) => {
   console.log(params);
     return axios.post("https://localhost:44364/api/OssLisans/GetFilterOssList" + `?pageIndex=${pagination.pageIndex}&pageSize=${pagination.pageSize}`,params);
@@ -30,7 +31,7 @@ const getAllUniversitiesCity = async () => {
 const getAllUniversitiesName = async () => {
   return axios.get("https://localhost:44364/api/OssLisans/GetAllUniversiteAdi");
 };
-  
+
 const getAllUniversitiesType = async () => {
   return axios.get("https://localhost:44364/api/OssLisans/GetAllUniversiteTuru");
 };
@@ -39,6 +40,22 @@ const getAllUniversitiesProgram = async () => {
   return axios.get("https://localhost:44364/api/OssLisans/GetAllProgramAdi");
 };
 
+const getAllUniversitiesFaculty= async () => {
+  return axios.get("https://localhost:44364/api/OssLisans/GetAllFakulte");
+};
+
+  
+// Ön lisans 
+const getAllUniversitiesFilterName = async () => {
+  return axios.get("https://localhost:44364/api/OssOnLisans/GetAllFilterUniversiteAdi");
+};
+
+const getFilterUniversitiesOnLisans = async (params:UniversityFilterParams,pagination:PaginationParams) => {
+  console.log(params);
+    return axios.post("https://localhost:44364/api/OssOnLisans/GetFilterOssList" + `?pageIndex=${pagination.pageIndex}&pageSize=${pagination.pageSize}`,params);
+  };
+
+
 getAllUniversitiesType
   const service = {
     getAllUniversities,
@@ -46,7 +63,10 @@ getAllUniversitiesType
     getAllUniversitiesCity,
     getAllUniversitiesName,
     getAllUniversitiesType,
-    getAllUniversitiesProgram
+    getAllUniversitiesProgram,
+    getAllUniversitiesFaculty,
+    getFilterUniversitiesOnLisans,
+    getAllUniversitiesFilterName
   };
   
   export default service;

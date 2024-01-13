@@ -110,7 +110,7 @@ const UniversityTable = ({
 
   const countTemplate = () => {
     const counts = ("Showing {first} to {last} of {totalRecords} records");
-    return loading === true ? "Loading..." : counts;
+    return loading === true ? counts : counts;
   };
 
   return (
