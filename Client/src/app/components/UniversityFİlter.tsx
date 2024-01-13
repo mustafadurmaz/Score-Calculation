@@ -56,6 +56,12 @@ const UniversityFİlter = ({
 }: Params) => {
   const [loading, setLoading] = useState(false);
 
+  // const [universitiesName, setUniversitiesName] = useState();
+  // const [city, setCity] = useState();
+  // const [universitiesType, setUniversitiesType] = useState();
+  // const [facultyName, setFacultyName] = useState();
+  // const [universitiesProgram, setUniversitiesProgram] = useState();
+  // const [scoreType, setScoreType] = useState();
 
   const schema = yup.object({});
 
@@ -97,35 +103,28 @@ const UniversityFİlter = ({
       tavanPuan: data?.scoreType?.yerlestirmePuani
     }
 
+    // setUniversitiesName(data?.universitiesType?.universiteTuru||"")
+    // setCity(data?.city?.sehir||"")
+    // setUniversitiesType(data?.universitiesType?.universiteTuru||"")
+    // setFacultyName(data?.facultyName?.fakulteler||"")
+    // setUniversitiesProgram(data?.universitiesProgram?.programAdi||"")
+    // setScoreType(data?.scoreType?.puanTuru.split(' ')[0])
+
     let pagination = {
       pageSize:lazyParams.rows,
       pageIndex:lazyParams.page
     }
 
-    if(params.puanTuru == "TYT"){
-      YKSService.getFilterUniversitiesOnLisans( params,pagination)
-      .then((response) => {
-        setUniversities(response.data);
-        setTotalUniversities(response.data.total) 
-        setTotalUniversities(response.data[0].toplamSatirSayisi) 
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
-    }
-    else{
-      YKSService.getFilterUniversities( params,pagination)
-      .then((response) => {
-        setUniversities(response.data);
-        setTotalUniversities(response.data.total) 
-        setTotalUniversities(response.data[0].toplamSatirSayisi) 
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
-    }
+    YKSService.getFilterUniversities( params,pagination)
+    .then((response) => {
+      setUniversities(response.data);
+      setTotalUniversities(response.data.total) 
+      setTotalUniversities(response.data[0].toplamSatirSayisi) 
+      setLoading(false);
+    })
+    .catch((err) => {
+      setLoading(false);
+    });
 
 
   }
