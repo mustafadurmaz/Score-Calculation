@@ -10,18 +10,19 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import TYTPuanHesaplama from "../../../components/TYTPuanHesaplama";
 import AYTPuanHesaplama from "../../../components/AYTPuanHesaplama";
-import PuanSonucları from "../../../components/PuanSonucları";
+import LGSPuanSonucları from "../../../components/LGSPuanSonucları";
 import UniversityDataTable from "../../../components/UniversityDataTable";
-import KPSSPuanHesaplama from "../../../components/KPSSPuanHesaplama";
+import LGSPuanHesaplama from "../../../components/LGSPuanHesaplama";
 
-const KPSSPage = () => {
+const LGSPage = () => {
   const [toggleReset, setToggleReset] = useState<boolean>(true);
-  const [tytScores, setTytScores] = useState({
+  const [LGSScores, setLGSScores] = useState({
     turkceNet: 0,
     sBilimlerNet: 0,
     tMatematikNet: 0,
     fBilimleriNet: 0,
-    diplomaNotu: 0,
+    inkilapNet: 0,
+    dinNet: 0,
     isEnroll:false
   });
 
@@ -64,17 +65,15 @@ const KPSSPage = () => {
     <>
       <div className="grid">
         <div className="col-12 md:col-6">
-          <KPSSPuanHesaplama
-            setTytScores={setTytScores}
+          <LGSPuanHesaplama
+            setLgsScores={setLGSScores}
             toggleReset={toggleReset}
           />
         </div>
         <div className="col-12 md:col-6">
-          <PuanSonucları
-            tytScores={tytScores}
-            setTytScores={setTytScores}
-            aytScores={aytScores}
-            setAytScores={setAytScores}
+          <LGSPuanSonucları
+            lgsScores={LGSScores}
+            setLgsScores={setLGSScores}
             toggleReset={toggleReset}
             setToggleReset={setToggleReset}
           />
@@ -84,4 +83,4 @@ const KPSSPage = () => {
   );
 };
 
-export default KPSSPage;
+export default LGSPage;

@@ -19,7 +19,7 @@ const AppMenu = () => {
             label: 'Sınavlar',
             items: [
                 { label: 'YKS', icon: 'pi pi-fw pi-id-card', to: '/yks/yks-puan-hesaplama' },
-                { label: 'KPSS', icon: 'pi pi-fw pi-id-card', to: '/kpss/kpss-puan-hesaplama' },
+                { label: 'LGS', icon: 'pi pi-fw pi-id-card', to: '/lgs/lgs-puan-hesaplama' },
                 // { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/uikit/input' },
                 // { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', to: '/uikit/floatlabel' },
                 // { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', to: '/uikit/invalidstate' },
