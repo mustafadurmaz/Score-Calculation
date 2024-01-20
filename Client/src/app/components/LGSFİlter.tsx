@@ -9,8 +9,13 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 
 import LGSService from "../../services/LGS/LGS";
-import CustomCities from "../customComponents/CustomCities";
-import CustomLGSName from "../customComponents/CustomCities";
+import CustomCities from "../customComponents/LGS/CustomLGSCities";
+import CustomIlce from "../customComponents/LGS/CustomLGSIlce";
+import CustomLGSName from "../customComponents/LGS/CustomLGSName";
+import CustomLGSAlan from "../customComponents/LGS/CustomLGSAlan";
+import CustomLGSOgrenimDili from "../customComponents/LGS/CustomLGSOgrenimDili";
+
+
 import CustomLGSType from "../customComponents/CustomCities";
 import CustomLGSProgram from "../customComponents/CustomCities";
 import CustomScoreType from "../customComponents/CustomScoreType";
@@ -42,16 +47,16 @@ interface Params {
   setLGS?: any;
   setTotalLGS?: any;
   scoreResults?: any;
-  showUniversityTable?: boolean;
-  setShowUniversityTable?: React.Dispatch<React.SetStateAction<boolean>>;
+  showLGSTable?: boolean;
+  setShowLGSTable?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LGSFİlter = ({
   setLGS,
   lazyParams,
   setTotalLGS,
-  showUniversityTable,
-  setShowUniversityTable,
+  showLGSTable,
+  setShowLGSTable,
   scoreResults
 }: Params) => {
   const [loading, setLoading] = useState(false);
@@ -92,14 +97,11 @@ const LGSFİlter = ({
   const onSubmit = (data:any) => {
 
     let params = {
-      universiteTuru: data?.LGSType?.universiteTuru||"",
-      sehir: data?.city?.sehir||"",
-      universiteAdi: data?.LGSName?.universiteAdi||"",
-      fakulte: data?.facultyName?.fakulteler||"",
-      // fakulte: string;
-      programAdi: data?.LGSProgram?.programAdi||"",
-      puanTuru: data?.scoreType?.puanTuru.split(' ')[0],
-      // tabanPuan: number;
+      liseProgramTuru: data?.alanTuru?.alanTuru||"",
+      sehir: data?.il?.il||"",
+      liseAdi: data?.liseAdi?.liseAdi||"",
+      ilce: data?.ilcce?.ilcce||"",
+      liseDili: data?.CustomLGSOgrenimDili?.ogrenimDili||"",
       tavanPuan: data?.scoreType?.yerlestirmePuani
     }
 
@@ -110,6 +112,7 @@ const LGSFİlter = ({
     // setLGSProgram(data?.LGSProgram?.programAdi||"")
     // setScoreType(data?.scoreType?.puanTuru.split(' ')[0])
 
+    console.log(data);
     let pagination = {
       pageSize:lazyParams.rows,
       pageIndex:lazyParams.page
@@ -133,46 +136,46 @@ const LGSFİlter = ({
       <Panel header="Filtrele" toggleable>  
       <form onSubmit={handleSubmit(onSubmit)}>
       <CustomLGSName
-          fieldLabel="Üniversiteler"
-          name="LGSName"
+          fieldLabel="Liseler"
+          name="liseAdi"
           control={control}
           errors={errors}
-          placeholder="Üniversite Seçiniz"
+          placeholder="Lise Seçiniz"
         />
-        <CustomLGSProgram
-          fieldLabel="Üniversite Programları"
-          name="LGSProgram"
+        <CustomLGSAlan
+          fieldLabel="Lise Program Çeşitleri"
+          name="alanTuru"
           control={control}
           errors={errors}
-          placeholder="Üniversite Programı Seçiniz"
+          placeholder="Lise Programı Seçiniz"
         />
         <CustomCities
-          fieldLabel="İller"
-          name="city"
+          fieldLabel="il"
+          name="il"
           control={control}
           errors={errors}
           placeholder="İl Seçiniz"
         />
-        <CustomLGSType
-          fieldLabel="Üniversite Türü"
-          name="LGSType"
+        <CustomIlce
+          fieldLabel="ilce"
+          name="ilce"
           control={control}
           errors={errors}
-          placeholder="Üniversite Türü Seçiniz"
+          placeholder="İlçe Seçiniz"
         />
-        <CustomFacultyName
-          fieldLabel="Fakülteler"
-          name="facultyName"
+        <CustomLGSOgrenimDili
+          fieldLabel="Öğrenim Dili"
+          name="CustomLGSOgrenimDili"
           control={control}
           errors={errors}
-          placeholder="Fakülte Türü Seçiniz"
+          placeholder="Lise Öğrenim Dili Seçiniz"
         />
         <CustomScoreType
-          fieldLabel="Üniversite Puan Türü"
+          fieldLabel="Lise Puan Türü"
           name="scoreType"
           control={control}
           errors={errors}
-          placeholder="Üniversite Puan Türü Seçiniz"
+          placeholder="lise Puan Türü Seçiniz"
           scoreResults ={scoreResults}
         />      
         <Button

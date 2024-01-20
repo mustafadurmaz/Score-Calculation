@@ -5,17 +5,17 @@ interface PaginationParams {
   pageSize?: number;
 }
 interface LGSFilterParams {
-  universiteTuru?: string;
+  liseProgramTuru?: string;
   sehir?: string;
-  universiteAdi?: string;
+  liseAdi?: string;
   // fakulte?: string;
-  programAdi?: string;
-  puanTuru?: string;
-  tabanPuan?: number;
+  ilce?: string;
+  liseDili?: string;
   tavanPuan?: number;
 }
 
 const GetAllList = async (params:PaginationParams) => {
+  console.log("girdi");
     return axios.post("https://localhost:44364/api/LGS/GetAllList"+ `?pageIndex=${params.pageIndex}&pageSize=${params.pageSize}`);
   };
 
