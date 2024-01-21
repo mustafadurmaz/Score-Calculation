@@ -139,6 +139,8 @@ const LGSPuanHesaplama = ({ setLgsScores, toggleReset }: Params) => {
     });
   }, [
     turkceNet,
+    inkilapNet,
+    dinNet,
     sBilimlerNet,
     tMatematikNet,
     fBilimleriNet,
@@ -359,7 +361,7 @@ const LGSPuanHesaplama = ({ setLgsScores, toggleReset }: Params) => {
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={20}
+                      max={10}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
@@ -384,8 +386,8 @@ const LGSPuanHesaplama = ({ setLgsScores, toggleReset }: Params) => {
                       min={0}
                       max={
                         typeof sBilimlerDogru === "number"
-                          ? 20 - sBilimlerDogru
-                          : 20
+                          ? 10 - sBilimlerDogru
+                          : 10
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);

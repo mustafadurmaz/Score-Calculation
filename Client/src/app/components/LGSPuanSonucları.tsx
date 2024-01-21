@@ -81,19 +81,17 @@ const LGSPuanSonucları = ({
 
   };
 
-  console.log(lgsScores);
   const scoreCalculate = () => {
 
     let lgsHamPuan =
-    lgsScores?.turkceNet * 4 +
-    lgsScores?.inkilapNet * 1 +
-    lgsScores?.dinNet * 1 +
-    lgsScores?.sBilimlerNet * 1 +
-    lgsScores?.tMatematikNet * 4 +
-    lgsScores?.fBilimleriNet * 4 + 50;
+    lgsScores?.turkceNet * 3.8850 +
+    lgsScores?.inkilapNet * 1.7190 +
+    lgsScores?.dinNet * 1.6400 +
+    lgsScores?.sBilimlerNet * 1.4990 +
+    lgsScores?.tMatematikNet * 4.902 +
+    lgsScores?.fBilimleriNet * 3.6870 + 201.94;
 
     lgsHamPuan = + lgsHamPuan.toFixed(3);
-console.log(lgsHamPuan);
     // let tytHamPuan =
     //   tytScores?.turkceNet * 2.89 +
     //   tytScores?.sBilimlerNet * 3.02 +
@@ -137,7 +135,6 @@ console.log(lgsHamPuan);
       });
     });
   };
-  console.log("sonuc " + scoreResults);
 
   const clearScores = () => {
     setToggleReset(!toggleReset);

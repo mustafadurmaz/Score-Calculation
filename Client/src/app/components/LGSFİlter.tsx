@@ -15,12 +15,7 @@ import CustomLGSName from "../customComponents/LGS/CustomLGSName";
 import CustomLGSAlan from "../customComponents/LGS/CustomLGSAlan";
 import CustomLGSOgrenimDili from "../customComponents/LGS/CustomLGSOgrenimDili";
 
-
-import CustomLGSType from "../customComponents/CustomCities";
-import CustomLGSProgram from "../customComponents/CustomCities";
 import CustomScoreType from "../customComponents/CustomScoreType";
-import CustomFacultyName from "../customComponents/CustomFacultyName";
-
 
 
 import { Button } from "primereact/button";
@@ -29,6 +24,12 @@ interface ITYTInputs {
   turkceDogru?: number;
   turkceYanlis?: number;
   turkceNet?: number;
+  inkilapDogru?: number;
+  inkilapYanlis?: number;
+  inkilapNet?: number;
+  dinDogru?: number;
+  dinYanlis?: number;
+  dinNet?: number;
   sBilimlerDogru?: number;
   sBilimlerYanlis?: number;
   sBilimlerNet?: number;
@@ -38,13 +39,12 @@ interface ITYTInputs {
   fBilimleriDogru?: number;
   fBilimleriYanlis?: number;
   fBilimleriNet?: number;
-  diplomaNotu?: number;
-  OBP?: number;
 }
 
 interface Params {
   lazyParams?: any;
   setLGS?: any;
+  setIlce?: any;
   setTotalLGS?: any;
   scoreResults?: any;
   showLGSTable?: boolean;
@@ -61,6 +61,7 @@ const LGSFİlter = ({
 }: Params) => {
   const [loading, setLoading] = useState(false);
 
+  const [selectedCity, setSelectedCity] = useState();
   // const [LGSName, setLGSName] = useState();
   // const [city, setCity] = useState();
   // const [LGSType, setLGSType] = useState();
@@ -100,7 +101,8 @@ const LGSFİlter = ({
       liseProgramTuru: data?.alanTuru?.alanTuru||"",
       sehir: data?.il?.il||"",
       liseAdi: data?.liseAdi?.liseAdi||"",
-      ilce: data?.ilcce?.ilcce||"",
+      il: data?.il?.il||"",
+      ilce: data?.ilce?.ilce||"",
       liseDili: data?.CustomLGSOgrenimDili?.ogrenimDili||"",
       tavanPuan: data?.scoreType?.yerlestirmePuani
     }
@@ -112,7 +114,6 @@ const LGSFİlter = ({
     // setLGSProgram(data?.LGSProgram?.programAdi||"")
     // setScoreType(data?.scoreType?.puanTuru.split(' ')[0])
 
-    console.log(data);
     let pagination = {
       pageSize:lazyParams.rows,
       pageIndex:lazyParams.page
@@ -135,13 +136,13 @@ const LGSFİlter = ({
     <>
       <Panel header="Filtrele" toggleable>  
       <form onSubmit={handleSubmit(onSubmit)}>
-      <CustomLGSName
-          fieldLabel="Liseler"
+      {/* <CustomLGSName
+          fieldLabel="Lise Adı"
           name="liseAdi"
           control={control}
           errors={errors}
           placeholder="Lise Seçiniz"
-        />
+        /> */}
         <CustomLGSAlan
           fieldLabel="Lise Program Çeşitleri"
           name="alanTuru"
@@ -155,6 +156,7 @@ const LGSFİlter = ({
           control={control}
           errors={errors}
           placeholder="İl Seçiniz"
+          setSelectedCity = {setSelectedCity}
         />
         <CustomIlce
           fieldLabel="ilce"
@@ -162,6 +164,7 @@ const LGSFİlter = ({
           control={control}
           errors={errors}
           placeholder="İlçe Seçiniz"
+          selectedCity = {selectedCity}
         />
         <CustomLGSOgrenimDili
           fieldLabel="Öğrenim Dili"

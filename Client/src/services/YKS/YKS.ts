@@ -20,14 +20,12 @@ const getAllUniversities = async (params:PaginationParams) => {
   };
 
 const getFilterUniversities = async (params:UniversityFilterParams,pagination:PaginationParams) => {
-  console.log(params);
   if (params.tavanPuan) {
     params.tavanPuan = params.tavanPuan;
   }
   else{
     params.tavanPuan = 0;
   }
-  console.log(params.tavanPuan);
     return axios.post("https://localhost:44364/api/OssLisans/GetFilterOssList" + `?pageIndex=${pagination.pageIndex}&pageSize=${pagination.pageSize}`,params);
   };
 

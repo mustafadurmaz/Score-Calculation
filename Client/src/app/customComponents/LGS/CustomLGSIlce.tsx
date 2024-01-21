@@ -13,6 +13,11 @@ interface Params {
   errors: any;
   className?: string;
   isDisabled?: boolean;
+  selectedCity?: any;
+}
+
+interface IlParams {
+  il: string;
 }
 
 const CustomLGSIlce = ({
@@ -22,13 +27,15 @@ const CustomLGSIlce = ({
   control,
   errors,
   className,
-  isDisabled
+  isDisabled,
+  selectedCity
 }: Params) => {
   const [workSpaceGroupData, setWorkSpaceGroupData] = useState<Node[]>([]);
 
+  const deneme ="";
   const getWorkSpaceGroup = async () => {
 
-    await LGSService.GetAllIlce().then((res) => {
+    await LGSService.GetAllIlce(selectedCity).then((res) => {
 
       setWorkSpaceGroupData(res.data);
 
@@ -37,7 +44,8 @@ const CustomLGSIlce = ({
 
   useEffect(() => {
     getWorkSpaceGroup();
-  }, []);
+
+  }, [selectedCity]);
 
 
   return (

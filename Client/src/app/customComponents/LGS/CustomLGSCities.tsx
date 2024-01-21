@@ -13,6 +13,7 @@ interface Params {
   errors: any;
   className?: string;
   isDisabled?: boolean;
+  setSelectedCity?: any;
 }
 
 const CustomLGSCities = ({
@@ -22,7 +23,8 @@ const CustomLGSCities = ({
   control,
   errors,
   className,
-  isDisabled
+  isDisabled,
+  setSelectedCity
 }: Params) => {
   const [workSpaceGroupData, setWorkSpaceGroupData] = useState<Node[]>([]);
 
@@ -56,6 +58,7 @@ const CustomLGSCities = ({
             optionLabel="il"
             onChange={(e) => {
               field.onChange(e.value);
+              setSelectedCity && setSelectedCity(e.value)
             }}
             filter
             // filterTemplate={filterTemplate}

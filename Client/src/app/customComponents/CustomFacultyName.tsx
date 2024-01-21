@@ -32,7 +32,6 @@ const CustomFacultyName = ({
     await YKSService.getAllUniversitiesFaculty().then((res) => {
 
       setWorkSpaceGroupData(res.data);
-console.log(res.data);
     });
   };
 

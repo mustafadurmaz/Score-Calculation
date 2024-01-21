@@ -14,6 +14,12 @@ interface ITYTInputs {
   turkceDogru?: number;
   turkceYanlis?: number;
   turkceNet?: number;
+  inkilapDogru?: number;
+  inkilapYanlis?: number;
+  inkilapNet?: number;
+  dinDogru?: number;
+  dinYanlis?: number;
+  dinNet?: number;
   sBilimlerDogru?: number;
   sBilimlerYanlis?: number;
   sBilimlerNet?: number;
@@ -23,8 +29,6 @@ interface ITYTInputs {
   fBilimleriDogru?: number;
   fBilimleriYanlis?: number;
   fBilimleriNet?: number;
-  diplomaNotu?: number;
-  OBP?: number;
 }
 
 interface Params {
@@ -112,11 +116,10 @@ const LGSTable = ({
     const counts = ("Showing {first} to {last} of {totalRecords} records");
     return loading === true ? counts : counts;
   };
-
   return (
     <>
       <Dialog
-        header="Liseler"
+        header="Lise Detay"
         visible={showLGSTable}
         onHide={() => setShowLGSTable(false)}
         style={{ width: "100vh" }}
@@ -158,11 +161,6 @@ const LGSTable = ({
             <Column
               field="ogrenimDili"
               header="Öğrenim Dili"
-              style={{ width: "25%" }}
-            ></Column>
-            <Column
-              field="fakulte"
-              header="Fakülte"
               style={{ width: "25%" }}
             ></Column>
             <Column field="il" header="İl" style={{ width: "25%" }}></Column>
