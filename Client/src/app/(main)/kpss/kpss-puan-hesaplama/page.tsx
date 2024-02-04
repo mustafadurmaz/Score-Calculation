@@ -12,6 +12,7 @@ import TYTPuanHesaplama from "../../../components/TYTPuanHesaplama";
 import AYTPuanHesaplama from "../../../components/AYTPuanHesaplama";
 import PuanSonucları from "../../../components/PuanSonucları";
 import UniversityDataTable from "../../../components/UniversityDataTable";
+import KPSSExamType from "../../../components/KPSS/KPSSExamType";
 
 const KPSSPage = () => {
   const [toggleReset, setToggleReset] = useState<boolean>(true);
@@ -63,7 +64,7 @@ const KPSSPage = () => {
     <>
       <div className="grid">
         <div className="col-12 md:col-4">
-          <TYTPuanHesaplama
+          <KPSSExamType
             setTytScores={setTytScores}
             toggleReset={toggleReset}
           />
