@@ -10,12 +10,12 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 
 interface IAYTInputs {
-  edebiyatDogru?: number;
-  edebiyatYanlis?: number;
-  edebiyatNet?: number;
-  tarih1Dogru?: number;
-  tarih1Yanlis?: number;
-  tarih1Net?: number;
+  genelYetenekDogru?: number;
+  genelYetenekYanlis?: number;
+  genelYetenekNet?: number;
+  genelKulturDogru?: number;
+  genelKulturYanlis?: number;
+  genelKulturNet?: number;
   cografya1Dogru?: number;
   cografya1Yanlis?: number;
   cografya1Net?: number;
@@ -65,12 +65,12 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
     mode: "onBlur",
     resolver: yupResolver(schema),
     defaultValues: {
-      edebiyatDogru: 0,
-      edebiyatYanlis: 0,
-      edebiyatNet: 0,
-      tarih1Dogru: 0,
-      tarih1Yanlis: 0,
-      tarih1Net: 0,
+      genelYetenekDogru: 0,
+      genelYetenekYanlis: 0,
+      genelYetenekNet: 0,
+      genelKulturDogru: 0,
+      genelKulturYanlis: 0,
+      genelKulturNet: 0,
       cografya1Dogru: 0,
       cografya1Yanlis: 0,
       cografya1Net: 0,
@@ -119,13 +119,13 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
     return net;
   };
 
-  const edebiyatDogru = watch("edebiyatDogru");
-  const edebiyatYanlis = watch("edebiyatYanlis");
-  const edebiyatNet = calculateNet(edebiyatDogru, edebiyatYanlis);
+  const genelYetenekDogru = watch("genelYetenekDogru");
+  const genelYetenekYanlis = watch("genelYetenekYanlis");
+  const genelYetenekNet = calculateNet(genelYetenekDogru, genelYetenekYanlis);
 
-  const tarih1Dogru = watch("tarih1Dogru");
-  const tarih1Yanlis = watch("tarih1Yanlis");
-  const tarih1Net = calculateNet(tarih1Dogru, tarih1Yanlis);
+  const genelKulturDogru = watch("genelKulturDogru");
+  const genelKulturYanlis = watch("genelKulturYanlis");
+  const genelKulturNet = calculateNet(genelKulturDogru, genelKulturYanlis);
 
   const cografya1Dogru = watch("cografya1Dogru");
   const cografya1Yanlis = watch("cografya1Yanlis");
@@ -167,8 +167,8 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
     setAytScores((prevValues: any) => {
       return {
         ...prevValues,
-        edebiyatNet,
-        tarih1Net,
+        genelYetenekNet,
+        genelKulturNet,
         cografya1Net,
         tarih2Net,
         cografya2Net,
@@ -181,8 +181,8 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
       };
     });
   }, [
-    edebiyatNet,
-    tarih1Net,
+    genelYetenekNet,
+    genelKulturNet,
     cografya1Net,
     tarih2Net,
     cografya2Net,
@@ -198,9 +198,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
     reset();
   }, [toggleReset]);
 
-  const onSubmit = (data: any) => {
-
-  };
+  const onSubmit = (data: any) => {};
 
   return (
     <>
@@ -209,33 +207,33 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
           <h5>AYT</h5>
           <div className="grid p-fluid mt-3">
             <div className="field grid col-12 md:col-3">
-              <span>Türk Dili ve Edebiyatı</span>
+              <span>Genel Yetenek</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="edebiyatDogru"
+                  name="genelYetenekDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={24}
+                      max={60}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.edebiyatDogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.genelYetenekDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="edebiyatYanlis"
+                  name="genelYetenekYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -243,9 +241,9 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof edebiyatDogru === "number"
-                          ? 24 - edebiyatDogru
-                          : 24
+                        typeof genelYetenekDogru === "number"
+                          ? 60 - genelYetenekDogru
+                          : 60
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);
@@ -254,7 +252,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.edebiyatYanlis?.message}
+                  {errors?.genelYetenekYanlis?.message}
                 </p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
@@ -263,47 +261,47 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("edebiyatNet")}
+                  {...register("genelYetenekNet")}
                   style={{ width: "100%" }}
                   value={
-                    edebiyatNet !== undefined ? edebiyatNet.toString() : ""
+                    genelYetenekNet !== undefined ? genelYetenekNet.toString() : ""
                   }
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.edebiyatNet?.message}</p>
+                <p style={{ color: "red" }}>{errors?.genelYetenekNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Tarih-1</span>
+              <span>Genel Kültür</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="tarih1Dogru"
+                  name="genelKulturDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={10}
+                      max={60}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.tarih1Dogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.genelKulturDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="tarih1Yanlis"
+                  name="genelKulturYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -311,7 +309,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof tarih1Dogru === "number" ? 10 - tarih1Dogru : 10
+                        typeof genelKulturDogru === "number" ? 60 - genelKulturDogru : 60
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);
@@ -319,7 +317,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.tarih1Dogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.genelKulturYanlis?.message}</p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
             </div>
@@ -327,19 +325,19 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("tarih1Net")}
+                  {...register("genelKulturNet")}
                   style={{ width: "100%" }}
-                  value={tarih1Net !== undefined ? tarih1Net.toString() : ""}
+                  value={genelKulturNet !== undefined ? genelKulturNet.toString() : ""}
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.tarih1Net?.message}</p>
+                <p style={{ color: "red" }}>{errors?.genelKulturNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Coğrafya-1</span>
+              <span>Eğitim Bilimleri</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -409,7 +407,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Tarih-2</span>
+              <span>Hukuk</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -471,7 +469,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Coğrafya-2</span>
+              <span>İktisat</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -541,7 +539,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Felsefe Grubu</span>
+              <span>İşletme</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -605,7 +603,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Din Kült. ve Ahl. Bilgisi / Ek Felsefe Grubu</span>
+              <span>Maliye</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -665,7 +663,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Matematik</span>
+              <span>Muhasebe</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -735,7 +733,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Fizik</span>
+              <span>Çalışma Ekonomisi</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -797,7 +795,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Kimya</span>
+              <span>İstatistik</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
@@ -859,7 +857,75 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
             </div>
 
             <div className="field grid col-12 md:col-3">
-              <span>Biyoloji</span>
+              <span>Kamu Yönetimi</span>
+            </div>
+            <div className="col-12 md:col-3">
+              <span className="p-float-label">
+                <Controller
+                  name="biyolojiDogru"
+                  control={control}
+                  render={({ field }) => (
+                    <InputNumber
+                      style={{ width: "100%" }}
+                      className="p-inputwrapper-focus"
+                      min={0}
+                      max={13}
+                      onValueChange={(e) => {
+                        field.onChange(e.value);
+                      }}
+                    />
+                  )}
+                />
+                <p style={{ color: "red" }}>{errors?.biyolojiDogru?.message}</p>
+                <label htmlFor="inputtext">Doğru</label>
+              </span>
+            </div>
+            <div className="col-12 md:col-3">
+              <span className="p-float-label">
+                <Controller
+                  name="biyolojiYanlis"
+                  control={control}
+                  render={({ field }) => (
+                    <InputNumber
+                      style={{ width: "100%" }}
+                      className="p-inputwrapper-focus"
+                      min={0}
+                      max={
+                        typeof biyolojiDogru === "number"
+                          ? 13 - biyolojiDogru
+                          : 13
+                      }
+                      onValueChange={(e) => {
+                        field.onChange(e.value);
+                      }}
+                    />
+                  )}
+                />
+                <p style={{ color: "red" }}>
+                  {errors?.biyolojiYanlis?.message}
+                </p>
+                <label htmlFor="inputtext">Yanlış</label>
+              </span>
+            </div>
+            <div className="col-12 md:col-3">
+              <span className="p-float-label">
+                <InputText
+                  autoComplete="off"
+                  {...register("biyolojiNet")}
+                  style={{ width: "100%" }}
+                  value={
+                    biyolojiNet !== undefined ? biyolojiNet.toString() : ""
+                  }
+                  disabled
+                  type="number"
+                />
+                <p style={{ color: "red" }}>{errors?.biyolojiNet?.message}</p>
+                <label htmlFor="inputtext">Net</label>
+              </span>
+            </div>
+
+            <div className="field grid col-12 md:col-3">
+              <span>Uluslararası İlişkiler</span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">

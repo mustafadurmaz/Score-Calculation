@@ -15,6 +15,7 @@ import UniversityDataTable from "../../../components/UniversityDataTable";
 import KPSSExamType from "../../../components/KPSS/KPSSExamType";
 
 const KPSSPage = () => {
+  const [examType, setExamType] = useState<string>("");
   const [toggleReset, setToggleReset] = useState<boolean>(true);
   const [tytScores, setTytScores] = useState({
     turkceNet: 0,
@@ -22,7 +23,7 @@ const KPSSPage = () => {
     tMatematikNet: 0,
     fBilimleriNet: 0,
     diplomaNotu: 0,
-    isEnroll:false
+    isEnroll: false,
   });
 
   const [aytScores, setAytScores] = useState({
@@ -54,11 +55,7 @@ const KPSSPage = () => {
     defaultValues: {},
   });
 
-
-
-  const onSubmit = (data: any) => {
-
-  };
+  const onSubmit = (data: any) => {};
 
   return (
     <>
@@ -67,10 +64,14 @@ const KPSSPage = () => {
           <KPSSExamType
             setTytScores={setTytScores}
             toggleReset={toggleReset}
+            setExamType={setExamType}
           />
         </div>
         <div className="col-12 md:col-4">
-          <AYTPuanHesaplama setAytScores={setAytScores} toggleReset={toggleReset}/>
+          <AYTPuanHesaplama
+            setAytScores={setAytScores}
+            toggleReset={toggleReset}
+          />
         </div>
         <div className="col-12 md:col-4">
           <PuanSonucları

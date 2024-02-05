@@ -12,19 +12,20 @@ interface ITYTInputs {
 interface Params {
   setTytScores: any;
   toggleReset: boolean;
+  setExamType: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const categories = [
-  { name: "Lisans (P1 - P48)", code: "A" },
-  { name: "Öğretmenlik (ÖABT) (P10, P120, P121)", code: "M" },
-  { name: "Önlisans (P93)", code: "P" },
-  { name: "Ortaöğretim (P94)", code: "R" },
-  { name: "Din Hizmetleri (DHBT) (P122, P123, P124)", code: "R" },
+  { name: "Lisans (P1 - P48)", code: "lisans" },
+  { name: "Öğretmenlik (ÖABT) (P10, P120, P121)", code: "ogretmenlik" },
+  { name: "Önlisans (P93)", code: "onlisans" },
+  { name: "Ortaöğretim (P94)", code: "ortaogretim" },
+  { name: "Din Hizmetleri (DHBT) (P122, P123, P124)", code: "dinhizmetleri" },
 ];
 
-const KPSSExamType = ({ setTytScores, toggleReset }: Params) => {
+const KPSSExamType = ({ setTytScores, toggleReset, setExamType }: Params) => {
   const [isEnroll, setIsEnroll] = useState<any>(false);
-  const [selectedCategory, setSelectedCategory] = useState(categories[1]);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   const schema = yup.object({});
 
@@ -40,12 +41,18 @@ const KPSSExamType = ({ setTytScores, toggleReset }: Params) => {
           <div className="col-12 md:col-12">
             {categories.map((category) => {
               return (
-                <div key={category.code} className="flex align-items-center">
+                <div
+                  key={category.code}
+                  className="flex align-items-center mt-2"
+                >
                   <RadioButton
                     inputId={category.code}
                     name="category"
                     value={category}
-                    onChange={(e) => setSelectedCategory(e.value)}
+                    onChange={(e) => {
+                      setSelectedCategory(e.value)
+                      setExamType(e.value)
+                    }}
                     checked={selectedCategory.code === category.code}
                   />
                   <label htmlFor={category.code} className="ml-2">
