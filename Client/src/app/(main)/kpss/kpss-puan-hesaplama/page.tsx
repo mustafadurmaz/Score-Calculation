@@ -13,6 +13,7 @@ import AYTPuanHesaplama from "../../../components/AYTPuanHesaplama";
 import PuanSonucları from "../../../components/PuanSonucları";
 import UniversityDataTable from "../../../components/UniversityDataTable";
 import KPSSExamType from "../../../components/KPSS/KPSSExamType";
+import Lisans from "../../../components/KPSS/Lisans";
 
 const KPSSPage = () => {
   const [examType, setExamType] = useState<string>("");
@@ -68,7 +69,7 @@ const KPSSPage = () => {
           />
         </div>
         <div className="col-12 md:col-4">
-          <AYTPuanHesaplama
+          <Lisans
             setAytScores={setAytScores}
             toggleReset={toggleReset}
           />
