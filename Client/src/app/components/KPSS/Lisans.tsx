@@ -16,9 +16,9 @@ interface IAYTInputs {
   genelKulturDogru?: number;
   genelKulturYanlis?: number;
   genelKulturNet?: number;
-  cografya1Dogru?: number;
-  cografya1Yanlis?: number;
-  cografya1Net?: number;
+  egitimBilimleriDogru?: number;
+  egitimBilimleriYanlis?: number;
+  egitimBilimleriNet?: number;
   tarih2Dogru?: number;
   tarih2Yanlis?: number;
   tarih2Net?: number;
@@ -71,9 +71,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
       genelKulturDogru: 0,
       genelKulturYanlis: 0,
       genelKulturNet: 0,
-      cografya1Dogru: 0,
-      cografya1Yanlis: 0,
-      cografya1Net: 0,
+      egitimBilimleriDogru: 0,
+      egitimBilimleriYanlis: 0,
+      egitimBilimleriNet: 0,
       tarih2Dogru: 0,
       tarih2Yanlis: 0,
       tarih2Net: 0,
@@ -127,9 +127,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
   const genelKulturYanlis = watch("genelKulturYanlis");
   const genelKulturNet = calculateNet(genelKulturDogru, genelKulturYanlis);
 
-  const cografya1Dogru = watch("cografya1Dogru");
-  const cografya1Yanlis = watch("cografya1Yanlis");
-  const cografya1Net = calculateNet(cografya1Dogru, cografya1Yanlis);
+  const egitimBilimleriDogru = watch("egitimBilimleriDogru");
+  const egitimBilimleriYanlis = watch("egitimBilimleriYanlis");
+  const egitimBilimleriNet = calculateNet(egitimBilimleriDogru, egitimBilimleriYanlis);
 
   const tarih2Dogru = watch("tarih2Dogru");
   const tarih2Yanlis = watch("tarih2Yanlis");
@@ -169,7 +169,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
         ...prevValues,
         genelYetenekNet,
         genelKulturNet,
-        cografya1Net,
+        egitimBilimleriNet,
         tarih2Net,
         cografya2Net,
         felsefeNet,
@@ -183,7 +183,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
   }, [
     genelYetenekNet,
     genelKulturNet,
-    cografya1Net,
+    egitimBilimleriNet,
     tarih2Net,
     cografya2Net,
     felsefeNet,
