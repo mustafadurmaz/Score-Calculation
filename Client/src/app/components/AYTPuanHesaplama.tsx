@@ -527,7 +527,7 @@ const AYTPuanHesaplama = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("tarih2Net")}
+                  {...register("cografya2Net")}
                   style={{ width: "100%" }}
                   value={
                     cografya2Net !== undefined ? cografya2Net.toString() : ""

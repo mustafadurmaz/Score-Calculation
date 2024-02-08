@@ -19,18 +19,18 @@ interface IAYTInputs {
   egitimBilimleriDogru?: number;
   egitimBilimleriYanlis?: number;
   egitimBilimleriNet?: number;
-  tarih2Dogru?: number;
-  tarih2Yanlis?: number;
-  tarih2Net?: number;
-  cografya2Dogru?: number;
-  cografya2Yanlis?: number;
-  cografya2Net?: number;
-  felsefeDogru?: number;
-  felsefeYanlis?: number;
-  felsefeNet?: number;
-  dinDogru?: number;
-  dinYanlis?: number;
-  dinNet?: number;
+  hukukDogru?: number;
+  hukukYanlis?: number;
+  hukukNet?: number;
+  iktisatDogru?: number;
+  iktisatYanlis?: number;
+  iktisatNet?: number;
+  isletmeDogru?: number;
+  isletmeYanlis?: number;
+  isletmeNet?: number;
+  maliyeDogru?: number;
+  maliyeYanlis?: number;
+  maliyeNet?: number;
   matematikDogru?: number;
   matematikYanlis?: number;
   matematikNet?: number;
@@ -74,18 +74,18 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
       egitimBilimleriDogru: 0,
       egitimBilimleriYanlis: 0,
       egitimBilimleriNet: 0,
-      tarih2Dogru: 0,
-      tarih2Yanlis: 0,
-      tarih2Net: 0,
-      cografya2Dogru: 0,
-      cografya2Yanlis: 0,
-      cografya2Net: 0,
-      felsefeDogru: 0,
-      felsefeYanlis: 0,
-      felsefeNet: 0,
-      dinDogru: 0,
-      dinYanlis: 0,
-      dinNet: 0,
+      hukukDogru: 0,
+      hukukYanlis: 0,
+      hukukNet: 0,
+      iktisatDogru: 0,
+      iktisatYanlis: 0,
+      iktisatNet: 0,
+      isletmeDogru: 0,
+      isletmeYanlis: 0,
+      isletmeNet: 0,
+      maliyeDogru: 0,
+      maliyeYanlis: 0,
+      maliyeNet: 0,
       matematikDogru: 0,
       matematikYanlis: 0,
       matematikNet: 0,
@@ -131,21 +131,21 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
   const egitimBilimleriYanlis = watch("egitimBilimleriYanlis");
   const egitimBilimleriNet = calculateNet(egitimBilimleriDogru, egitimBilimleriYanlis);
 
-  const tarih2Dogru = watch("tarih2Dogru");
-  const tarih2Yanlis = watch("tarih2Yanlis");
-  const tarih2Net = calculateNet(tarih2Dogru, tarih2Yanlis);
+  const hukukDogru = watch("hukukDogru");
+  const hukukYanlis = watch("hukukYanlis");
+  const hukukNet = calculateNet(hukukDogru, hukukYanlis);
 
-  const cografya2Dogru = watch("cografya2Dogru");
-  const cografya2Yanlis = watch("cografya2Yanlis");
-  const cografya2Net = calculateNet(cografya2Dogru, cografya2Yanlis);
+  const iktisatDogru = watch("iktisatDogru");
+  const iktisatYanlis = watch("iktisatYanlis");
+  const iktisatNet = calculateNet(iktisatDogru, iktisatYanlis);
 
-  const felsefeDogru = watch("felsefeDogru");
-  const felsefeYanlis = watch("felsefeYanlis");
-  const felsefeNet = calculateNet(felsefeDogru, felsefeYanlis);
+  const isletmeDogru = watch("isletmeDogru");
+  const isletmeYanlis = watch("isletmeYanlis");
+  const isletmeNet = calculateNet(isletmeDogru, isletmeYanlis);
 
-  const dinDogru = watch("dinDogru");
-  const dinYanlis = watch("dinYanlis");
-  const dinNet = calculateNet(dinDogru, dinYanlis);
+  const maliyeDogru = watch("maliyeDogru");
+  const maliyeYanlis = watch("maliyeYanlis");
+  const maliyeNet = calculateNet(maliyeDogru, maliyeYanlis);
 
   const matematikDogru = watch("matematikDogru");
   const matematikYanlis = watch("matematikYanlis");
@@ -170,10 +170,10 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
         genelYetenekNet,
         genelKulturNet,
         egitimBilimleriNet,
-        tarih2Net,
-        cografya2Net,
-        felsefeNet,
-        dinNet,
+        hukukNet,
+        iktisatNet,
+        isletmeNet,
+        maliyeNet,
         matematikNet,
         fizikNet,
         kimyaNet,
@@ -184,10 +184,10 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
     genelYetenekNet,
     genelKulturNet,
     egitimBilimleriNet,
-    tarih2Net,
-    cografya2Net,
-    felsefeNet,
-    dinNet,
+    hukukNet,
+    iktisatNet,
+    isletmeNet,
+    maliyeNet,
     matematikNet,
     fizikNet,
     kimyaNet,
@@ -412,7 +412,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="tarih2Dogru"
+                  name="hukukDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -426,14 +426,14 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.tarih2Dogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.hukukDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="tarih2Yanlis"
+                  name="hukukYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -441,7 +441,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof tarih2Dogru === "number" ? 11 - tarih2Dogru : 11
+                        typeof hukukDogru === "number" ? 11 - hukukDogru : 11
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);
@@ -449,7 +449,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.tarih2Yanlis?.message}</p>
+                <p style={{ color: "red" }}>{errors?.hukukYanlis?.message}</p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
             </div>
@@ -457,13 +457,13 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("tarih2Net")}
+                  {...register("hukukNet")}
                   style={{ width: "100%" }}
-                  value={tarih2Net !== undefined ? tarih2Net.toString() : ""}
+                  value={hukukNet !== undefined ? hukukNet.toString() : ""}
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.tarih2Net?.message}</p>
+                <p style={{ color: "red" }}>{errors?.hukukNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
@@ -474,7 +474,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="cografya2Dogru"
+                  name="iktisatDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -489,7 +489,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.cografya2Dogru?.message}
+                  {errors?.iktisatDogru?.message}
                 </p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
@@ -497,7 +497,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="cografya2Yanlis"
+                  name="iktisatYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -505,8 +505,8 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof cografya2Dogru === "number"
-                          ? 11 - cografya2Dogru
+                        typeof iktisatDogru === "number"
+                          ? 11 - iktisatDogru
                           : 11
                       }
                       onValueChange={(e) => {
@@ -516,7 +516,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.cografya2Yanlis?.message}
+                  {errors?.iktisatYanlis?.message}
                 </p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
@@ -525,15 +525,15 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("tarih2Net")}
+                  {...register("iktisatNet")}
                   style={{ width: "100%" }}
                   value={
-                    cografya2Net !== undefined ? cografya2Net.toString() : ""
+                    iktisatNet !== undefined ? iktisatNet.toString() : ""
                   }
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.cografya2Net?.message}</p>
+                <p style={{ color: "red" }}>{errors?.iktisatNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
@@ -544,7 +544,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="felsefeDogru"
+                  name="isletmeDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -558,14 +558,14 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.felsefeDogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.isletmeDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="felsefeYanlis"
+                  name="isletmeYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -573,8 +573,8 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof felsefeDogru === "number"
-                          ? 12 - felsefeDogru
+                        typeof isletmeDogru === "number"
+                          ? 12 - isletmeDogru
                           : 12
                       }
                       onValueChange={(e) => {
@@ -583,7 +583,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.felsefeYanlis?.message}</p>
+                <p style={{ color: "red" }}>{errors?.isletmeYanlis?.message}</p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
             </div>
@@ -591,13 +591,13 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("felsefeNet")}
+                  {...register("isletmeNet")}
                   style={{ width: "100%" }}
-                  value={felsefeNet !== undefined ? felsefeNet.toString() : ""}
+                  value={isletmeNet !== undefined ? isletmeNet.toString() : ""}
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.felsefeNet?.message}</p>
+                <p style={{ color: "red" }}>{errors?.isletmeNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
@@ -608,7 +608,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="dinDogru"
+                  name="maliyeDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -622,28 +622,28 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.dinDogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.maliyeDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="dinYanlis"
+                  name="maliyeYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={typeof dinDogru === "number" ? 6 - dinDogru : 6}
+                      max={typeof maliyeDogru === "number" ? 6 - maliyeDogru : 6}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.dinYanlis?.message}</p>
+                <p style={{ color: "red" }}>{errors?.maliyeYanlis?.message}</p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
             </div>
@@ -651,13 +651,13 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("dinNet")}
+                  {...register("maliyeNet")}
                   style={{ width: "100%" }}
-                  value={dinNet !== undefined ? dinNet.toString() : ""}
+                  value={maliyeNet !== undefined ? maliyeNet.toString() : ""}
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.dinNet?.message}</p>
+                <p style={{ color: "red" }}>{errors?.maliyeNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
