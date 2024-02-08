@@ -342,14 +342,14 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="cografya1Dogru"
+                  name="egitimBilimleriDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={6}
+                      max={80}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
@@ -357,7 +357,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.cografya1Dogru?.message}
+                  {errors?.egitimBilimleriDogru?.message}
                 </p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
@@ -365,7 +365,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="cografya1Yanlis"
+                  name="egitimBilimleriYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -373,9 +373,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof cografya1Dogru === "number"
-                          ? 6 - cografya1Dogru
-                          : 6
+                        typeof egitimBilimleriDogru === "number"
+                          ? 80 - egitimBilimleriDogru
+                          : 80
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);
@@ -384,7 +384,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.cografya1Yanlis?.message}
+                  {errors?.egitimBilimleriYanlis?.message}
                 </p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
@@ -393,15 +393,15 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("cografya1Net")}
+                  {...register("egitimBilimleriNet")}
                   style={{ width: "100%" }}
                   value={
-                    cografya1Net !== undefined ? cografya1Net.toString() : ""
+                    egitimBilimleriNet !== undefined ? egitimBilimleriNet.toString() : ""
                   }
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.cografya1Net?.message}</p>
+                <p style={{ color: "red" }}>{errors?.egitimBilimleriNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
