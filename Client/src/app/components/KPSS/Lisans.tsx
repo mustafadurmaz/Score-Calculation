@@ -31,9 +31,9 @@ interface IAYTInputs {
   maliyeDogru?: number;
   maliyeYanlis?: number;
   maliyeNet?: number;
-  matematikDogru?: number;
-  matematikYanlis?: number;
-  matematikNet?: number;
+  muhasebeDogru?: number;
+  muhasebeYanlis?: number;
+  muhasebeNet?: number;
   fizikDogru?: number;
   fizikYanlis?: number;
   fizikNet?: number;
@@ -86,9 +86,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
       maliyeDogru: 0,
       maliyeYanlis: 0,
       maliyeNet: 0,
-      matematikDogru: 0,
-      matematikYanlis: 0,
-      matematikNet: 0,
+      muhasebeDogru: 0,
+      muhasebeYanlis: 0,
+      muhasebeNet: 0,
       fizikDogru: 0,
       fizikYanlis: 0,
       fizikNet: 0,
@@ -147,9 +147,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
   const maliyeYanlis = watch("maliyeYanlis");
   const maliyeNet = calculateNet(maliyeDogru, maliyeYanlis);
 
-  const matematikDogru = watch("matematikDogru");
-  const matematikYanlis = watch("matematikYanlis");
-  const matematikNet = calculateNet(matematikDogru, matematikYanlis);
+  const muhasebeDogru = watch("muhasebeDogru");
+  const muhasebeYanlis = watch("muhasebeYanlis");
+  const muhasebeNet = calculateNet(muhasebeDogru, muhasebeYanlis);
 
   const fizikDogru = watch("fizikDogru");
   const fizikYanlis = watch("fizikYanlis");
@@ -174,7 +174,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
         iktisatNet,
         isletmeNet,
         maliyeNet,
-        matematikNet,
+        muhasebeNet,
         fizikNet,
         kimyaNet,
         biyolojiNet,
@@ -188,7 +188,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
     iktisatNet,
     isletmeNet,
     maliyeNet,
-    matematikNet,
+    muhasebeNet,
     fizikNet,
     kimyaNet,
     biyolojiNet,
@@ -668,7 +668,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="matematikDogru"
+                  name="muhasebeDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -683,7 +683,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.matematikDogru?.message}
+                  {errors?.muhasebeDogru?.message}
                 </p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
@@ -691,7 +691,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="matematikYanlis"
+                  name="muhasebeYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -699,8 +699,8 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof matematikDogru === "number"
-                          ? 40 - matematikDogru
+                        typeof muhasebeDogru === "number"
+                          ? 40 - muhasebeDogru
                           : 40
                       }
                       onValueChange={(e) => {
@@ -710,7 +710,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.matematikYanlis?.message}
+                  {errors?.muhasebeYanlis?.message}
                 </p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
@@ -719,15 +719,15 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("matematikNet")}
+                  {...register("muhasebeNet")}
                   style={{ width: "100%" }}
                   value={
-                    matematikNet !== undefined ? matematikNet.toString() : ""
+                    muhasebeNet !== undefined ? muhasebeNet.toString() : ""
                   }
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.matematikNet?.message}</p>
+                <p style={{ color: "red" }}>{errors?.muhasebeNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
