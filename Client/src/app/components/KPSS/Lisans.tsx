@@ -37,9 +37,9 @@ interface IAYTInputs {
   calismaEkonomisiDogru?: number;
   calismaEkonomisiYanlis?: number;
   calismaEkonomisiNet?: number;
-  kimyaDogru?: number;
-  kimyaYanlis?: number;
-  kimyaNet?: number;
+  istatistikDogru?: number;
+  istatistikYanlis?: number;
+  istatistikNet?: number;
   biyolojiDogru?: number;
   biyolojiYanlis?: number;
   biyolojiNet?: number;
