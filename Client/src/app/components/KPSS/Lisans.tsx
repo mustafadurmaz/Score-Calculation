@@ -92,9 +92,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
       calismaEkonomisiDogru: 0,
       calismaEkonomisiYanlis: 0,
       calismaEkonomisiNet: 0,
-      kimyaDogru: 0,
-      kimyaYanlis: 0,
-      kimyaNet: 0,
+      istatistikDogru: 0,
+      istatistikYanlis: 0,
+      istatistikNet: 0,
       biyolojiDogru: 0,
       biyolojiYanlis: 0,
       biyolojiNet: 0,
@@ -155,9 +155,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
   const calismaEkonomisiYanlis = watch("calismaEkonomisiYanlis");
   const calismaEkonomisiNet = calculateNet(calismaEkonomisiDogru, calismaEkonomisiYanlis);
 
-  const kimyaDogru = watch("kimyaDogru");
-  const kimyaYanlis = watch("kimyaYanlis");
-  const kimyaNet = calculateNet(kimyaDogru, kimyaYanlis);
+  const istatistikDogru = watch("istatistikDogru");
+  const istatistikYanlis = watch("istatistikYanlis");
+  const istatistikNet = calculateNet(istatistikDogru, istatistikYanlis);
 
   const biyolojiDogru = watch("biyolojiDogru");
   const biyolojiYanlis = watch("biyolojiYanlis");
@@ -176,7 +176,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
         maliyeNet,
         muhasebeNet,
         calismaEkonomisiNet,
-        kimyaNet,
+        istatistikNet,
         biyolojiNet,
       };
     });
@@ -190,7 +190,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
     maliyeNet,
     muhasebeNet,
     calismaEkonomisiNet,
-    kimyaNet,
+    istatistikNet,
     biyolojiNet,
   ]);
 
@@ -800,28 +800,28 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="kimyaDogru"
+                  name="istatistikDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={13}
+                      max={40}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.kimyaDogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.istatistikDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="kimyaYanlis"
+                  name="istatistikYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -829,7 +829,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof kimyaDogru === "number" ? 13 - kimyaDogru : 13
+                        typeof istatistikDogru === "number" ? 40 - istatistikDogru : 40
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);
@@ -837,7 +837,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.kimyaYanlis?.message}</p>
+                <p style={{ color: "red" }}>{errors?.istatistikYanlis?.message}</p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
             </div>
@@ -845,13 +845,13 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("kimyaNet")}
+                  {...register("istatistikNet")}
                   style={{ width: "100%" }}
-                  value={kimyaNet !== undefined ? kimyaNet.toString() : ""}
+                  value={istatistikNet !== undefined ? istatistikNet.toString() : ""}
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.kimyaNet?.message}</p>
+                <p style={{ color: "red" }}>{errors?.istatistikNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
