@@ -40,9 +40,12 @@ interface IAYTInputs {
   istatistikDogru?: number;
   istatistikYanlis?: number;
   istatistikNet?: number;
-  biyolojiDogru?: number;
-  biyolojiYanlis?: number;
-  biyolojiNet?: number;
+  kamuYonetimiDogru?: number;
+  kamuYonetimiYanlis?: number;
+  kamuYonetimiNet?: number;
+  uİliskilerDogru?: number;
+  uİliskilerYanlis?: number;
+  uİliskilerNet?: number;
 }
 
 interface Params {
@@ -95,9 +98,12 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
       istatistikDogru: 0,
       istatistikYanlis: 0,
       istatistikNet: 0,
-      biyolojiDogru: 0,
-      biyolojiYanlis: 0,
-      biyolojiNet: 0,
+      kamuYonetimiDogru: 0,
+      kamuYonetimiYanlis: 0,
+      kamuYonetimiNet: 0,
+      uİliskilerDogru: 0,
+      uİliskilerYanlis: 0,
+      uİliskilerNet: 0
     },
   });
 
@@ -159,9 +165,13 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
   const istatistikYanlis = watch("istatistikYanlis");
   const istatistikNet = calculateNet(istatistikDogru, istatistikYanlis);
 
-  const biyolojiDogru = watch("biyolojiDogru");
-  const biyolojiYanlis = watch("biyolojiYanlis");
-  const biyolojiNet = calculateNet(biyolojiDogru, biyolojiYanlis);
+  const kamuYonetimiDogru = watch("kamuYonetimiDogru");
+  const kamuYonetimiYanlis = watch("kamuYonetimiYanlis");
+  const kamuYonetimiNet = calculateNet(kamuYonetimiDogru, kamuYonetimiYanlis);
+
+  const uİliskilerDogru = watch("uİliskilerDogru");
+  const uİliskilerYanlis = watch("uİliskilerYanlis");
+  const uİliskilerNet = calculateNet(uİliskilerDogru, uİliskilerYanlis);
 
   useEffect(() => {
     setAytScores((prevValues: any) => {
@@ -177,7 +187,8 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
         muhasebeNet,
         calismaEkonomisiNet,
         istatistikNet,
-        biyolojiNet,
+        kamuYonetimiNet,
+        uİliskilerNet
       };
     });
   }, [
@@ -191,7 +202,8 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
     muhasebeNet,
     calismaEkonomisiNet,
     istatistikNet,
-    biyolojiNet,
+    kamuYonetimiNet,
+    uİliskilerNet
   ]);
 
   useEffect(() => {
@@ -862,28 +874,28 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="biyolojiDogru"
+                  name="kamuYonetimiDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={13}
+                      max={40}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.biyolojiDogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.kamuYonetimiDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="biyolojiYanlis"
+                  name="kamuYonetimiYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -891,9 +903,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof biyolojiDogru === "number"
-                          ? 13 - biyolojiDogru
-                          : 13
+                        typeof kamuYonetimiDogru === "number"
+                          ? 40 - kamuYonetimiDogru
+                          : 40
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);
@@ -902,7 +914,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.biyolojiYanlis?.message}
+                  {errors?.kamuYonetimiYanlis?.message}
                 </p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
@@ -911,15 +923,15 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("biyolojiNet")}
+                  {...register("kamuYonetimiNet")}
                   style={{ width: "100%" }}
                   value={
-                    biyolojiNet !== undefined ? biyolojiNet.toString() : ""
+                    kamuYonetimiNet !== undefined ? kamuYonetimiNet.toString() : ""
                   }
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.biyolojiNet?.message}</p>
+                <p style={{ color: "red" }}>{errors?.kamuYonetimiNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
@@ -930,28 +942,28 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="biyolojiDogru"
+                  name="uİliskilerDogru"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
                       style={{ width: "100%" }}
                       className="p-inputwrapper-focus"
                       min={0}
-                      max={13}
+                      max={40}
                       onValueChange={(e) => {
                         field.onChange(e.value);
                       }}
                     />
                   )}
                 />
-                <p style={{ color: "red" }}>{errors?.biyolojiDogru?.message}</p>
+                <p style={{ color: "red" }}>{errors?.uİliskilerDogru?.message}</p>
                 <label htmlFor="inputtext">Doğru</label>
               </span>
             </div>
             <div className="col-12 md:col-3">
               <span className="p-float-label">
                 <Controller
-                  name="biyolojiYanlis"
+                  name="uİliskilerYanlis"
                   control={control}
                   render={({ field }) => (
                     <InputNumber
@@ -959,9 +971,9 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                       className="p-inputwrapper-focus"
                       min={0}
                       max={
-                        typeof biyolojiDogru === "number"
-                          ? 13 - biyolojiDogru
-                          : 13
+                        typeof uİliskilerDogru === "number"
+                          ? 40 - uİliskilerDogru
+                          : 40
                       }
                       onValueChange={(e) => {
                         field.onChange(e.value);
@@ -970,7 +982,7 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
                   )}
                 />
                 <p style={{ color: "red" }}>
-                  {errors?.biyolojiYanlis?.message}
+                  {errors?.uİliskilerYanlis?.message}
                 </p>
                 <label htmlFor="inputtext">Yanlış</label>
               </span>
@@ -979,15 +991,15 @@ const Lisans = ({ setAytScores, toggleReset }: Params) => {
               <span className="p-float-label">
                 <InputText
                   autoComplete="off"
-                  {...register("biyolojiNet")}
+                  {...register("uİliskilerNet")}
                   style={{ width: "100%" }}
                   value={
-                    biyolojiNet !== undefined ? biyolojiNet.toString() : ""
+                    uİliskilerNet !== undefined ? uİliskilerNet.toString() : ""
                   }
                   disabled
                   type="number"
                 />
-                <p style={{ color: "red" }}>{errors?.biyolojiNet?.message}</p>
+                <p style={{ color: "red" }}>{errors?.uİliskilerNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
