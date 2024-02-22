@@ -16,12 +16,6 @@ interface IAYTInputs {
   genelKulturDogru?: number;
   genelKulturYanlis?: number;
   genelKulturNet?: number;
-  egitimBilimleriDogru?: number;
-  egitimBilimleriYanlis?: number;
-  egitimBilimleriNet?: number;
-  ydsDogru?: number;
-  ydsYanlis?: number;
-  ydsNet?: number;
 }
 
 interface Params {
@@ -50,12 +44,6 @@ const OnLisans = ({ setAytScores, toggleReset }: Params) => {
       genelKulturDogru: 0,
       genelKulturYanlis: 0,
       genelKulturNet: 0,
-      egitimBilimleriDogru: 0,
-      egitimBilimleriYanlis: 0,
-      egitimBilimleriNet: 0,
-      ydsDogru: 0,
-      ydsYanlis: 0,
-      ydsNet: 0,
     },
   });
 
@@ -85,14 +73,6 @@ const OnLisans = ({ setAytScores, toggleReset }: Params) => {
   const genelKulturYanlis = watch("genelKulturYanlis");
   const genelKulturNet = calculateNet(genelKulturDogru, genelKulturYanlis);
 
-  const egitimBilimleriDogru = watch("egitimBilimleriDogru");
-  const egitimBilimleriYanlis = watch("egitimBilimleriYanlis");
-  const egitimBilimleriNet = calculateNet(egitimBilimleriDogru, egitimBilimleriYanlis);
-
-  const ydsDogru = watch("ydsDogru");
-  const ydsYanlis = watch("ydsYanlis");
-  const ydsNet = calculateNet(ydsDogru, ydsYanlis);
-
 
   useEffect(() => {
     setAytScores((prevValues: any) => {
@@ -100,15 +80,11 @@ const OnLisans = ({ setAytScores, toggleReset }: Params) => {
         ...prevValues,
         genelYetenekNet,
         genelKulturNet,
-        egitimBilimleriNet,
-        ydsNet
       };
     });
   }, [
     genelYetenekNet,
-    genelKulturNet,
-    egitimBilimleriNet,
-    ydsNet
+    genelKulturNet
   ]);
 
   useEffect(() => {
@@ -249,138 +225,6 @@ const OnLisans = ({ setAytScores, toggleReset }: Params) => {
                   type="number"
                 />
                 <p style={{ color: "red" }}>{errors?.genelKulturNet?.message}</p>
-                <label htmlFor="inputtext">Net</label>
-              </span>
-            </div>
-
-            <div className="field grid col-12 md:col-3">
-              <span>Eğitim Bilimleri</span>
-            </div>
-            <div className="col-12 md:col-3">
-              <span className="p-float-label">
-                <Controller
-                  name="egitimBilimleriDogru"
-                  control={control}
-                  render={({ field }) => (
-                    <InputNumber
-                      style={{ width: "100%" }}
-                      className="p-inputwrapper-focus"
-                      min={0}
-                      max={80}
-                      onValueChange={(e) => {
-                        field.onChange(e.value);
-                      }}
-                    />
-                  )}
-                />
-                <p style={{ color: "red" }}>
-                  {errors?.egitimBilimleriDogru?.message}
-                </p>
-                <label htmlFor="inputtext">Doğru</label>
-              </span>
-            </div>
-            <div className="col-12 md:col-3">
-              <span className="p-float-label">
-                <Controller
-                  name="egitimBilimleriYanlis"
-                  control={control}
-                  render={({ field }) => (
-                    <InputNumber
-                      style={{ width: "100%" }}
-                      className="p-inputwrapper-focus"
-                      min={0}
-                      max={
-                        typeof egitimBilimleriDogru === "number"
-                          ? 80 - egitimBilimleriDogru
-                          : 80
-                      }
-                      onValueChange={(e) => {
-                        field.onChange(e.value);
-                      }}
-                    />
-                  )}
-                />
-                <p style={{ color: "red" }}>
-                  {errors?.egitimBilimleriYanlis?.message}
-                </p>
-                <label htmlFor="inputtext">Yanlış</label>
-              </span>
-            </div>
-            <div className="col-12 md:col-3">
-              <span className="p-float-label">
-                <InputText
-                  autoComplete="off"
-                  {...register("egitimBilimleriNet")}
-                  style={{ width: "100%" }}
-                  value={
-                    egitimBilimleriNet !== undefined ? egitimBilimleriNet.toString() : ""
-                  }
-                  disabled
-                  type="number"
-                />
-                <p style={{ color: "red" }}>{errors?.egitimBilimleriNet?.message}</p>
-                <label htmlFor="inputtext">Net</label>
-              </span>
-            </div>
-
-            <div className="field grid col-12 md:col-3">
-              <span>YDS</span>
-            </div>
-            <div className="col-12 md:col-3">
-              <span className="p-float-label">
-                <Controller
-                  name="ydsDogru"
-                  control={control}
-                  render={({ field }) => (
-                    <InputNumber
-                      style={{ width: "100%" }}
-                      className="p-inputwrapper-focus"
-                      min={0}
-                      max={80}
-                      onValueChange={(e) => {
-                        field.onChange(e.value);
-                      }}
-                    />
-                  )}
-                />
-                <p style={{ color: "red" }}>{errors?.ydsDogru?.message}</p>
-                <label htmlFor="inputtext">Doğru</label>
-              </span>
-            </div>
-            <div className="col-12 md:col-3">
-              <span className="p-float-label">
-                <Controller
-                  name="ydsYanlis"
-                  control={control}
-                  render={({ field }) => (
-                    <InputNumber
-                      style={{ width: "100%" }}
-                      className="p-inputwrapper-focus"
-                      min={0}
-                      max={
-                        typeof ydsDogru === "number" ? 80 - ydsDogru : 80
-                      }
-                      onValueChange={(e) => {
-                        field.onChange(e.value);
-                      }}
-                    />
-                  )}
-                />
-                <p style={{ color: "red" }}>{errors?.ydsYanlis?.message}</p>
-                <label htmlFor="inputtext">Yanlış</label>
-              </span>
-            </div>
-            <div className="col-12 md:col-3">
-              <span className="p-float-label">
-                <InputText
-                  autoComplete="off"
-                  {...register("ydsNet")}
-                  style={{ width: "100%" }}
-                  value={ydsNet !== undefined ? ydsNet.toString() : ""}
-                  disabled
-                  type="number"
-                />
-                <p style={{ color: "red" }}>{errors?.ydsNet?.message}</p>
                 <label htmlFor="inputtext">Net</label>
               </span>
             </div>
