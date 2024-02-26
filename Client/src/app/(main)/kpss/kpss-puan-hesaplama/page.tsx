@@ -16,7 +16,10 @@ import KPSSExamType from "../../../components/KPSS/KPSSExamType";
 import Lisans from "../../../components/KPSS/Lisans";
 
 const KPSSPage = () => {
-  const [examType, setExamType] = useState<string>("");
+  const [examType, setExamType] = useState<any>({
+    name: "Lisans (P1 - P48)",
+    code: "lisans"
+  });
   const [toggleReset, setToggleReset] = useState<boolean>(true);
   const [tytScores, setTytScores] = useState({
     turkceNet: 0,
@@ -58,6 +61,8 @@ const KPSSPage = () => {
 
   const onSubmit = (data: any) => {};
 
+  console.log("examType", examType);
+
   return (
     <>
       <div className="grid">
@@ -68,12 +73,12 @@ const KPSSPage = () => {
             setExamType={setExamType}
           />
         </div>
-        <div className="col-12 md:col-4">
-          <Lisans
-            setAytScores={setAytScores}
-            toggleReset={toggleReset}
-          />
-        </div>
+        {examType?.code === "lisans" && (
+          <div className="col-12 md:col-4">
+            <Lisans setAytScores={setAytScores} toggleReset={toggleReset} />
+          </div>
+        )}
+
         <div className="col-12 md:col-4">
           <PuanSonucları
             tytScores={tytScores}
