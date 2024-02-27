@@ -14,11 +14,12 @@ import PuanSonucları from "../../../components/PuanSonucları";
 import UniversityDataTable from "../../../components/UniversityDataTable";
 import KPSSExamType from "../../../components/KPSS/KPSSExamType";
 import Lisans from "../../../components/KPSS/Lisans";
+import Ogretmenlik from "../../../components/KPSS/Ogretmenlik";
 
 const KPSSPage = () => {
   const [examType, setExamType] = useState<any>({
     name: "Lisans (P1 - P48)",
-    code: "lisans"
+    code: "lisans",
   });
   const [toggleReset, setToggleReset] = useState<boolean>(true);
   const [tytScores, setTytScores] = useState({
@@ -76,6 +77,15 @@ const KPSSPage = () => {
         {examType?.code === "lisans" && (
           <div className="col-12 md:col-4">
             <Lisans setAytScores={setAytScores} toggleReset={toggleReset} />
+          </div>
+        )}
+
+        {examType?.code === "ogretmenlik" && (
+          <div className="col-12 md:col-4">
+            <Ogretmenlik
+              setAytScores={setAytScores}
+              toggleReset={toggleReset}
+            />
           </div>
         )}
 
