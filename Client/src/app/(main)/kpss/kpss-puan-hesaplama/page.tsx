@@ -15,6 +15,7 @@ import UniversityDataTable from "../../../components/UniversityDataTable";
 import KPSSExamType from "../../../components/KPSS/KPSSExamType";
 import Lisans from "../../../components/KPSS/Lisans";
 import Ogretmenlik from "../../../components/KPSS/Ogretmenlik";
+import OnLisans from "../../../components/KPSS/OnLisans";
 
 const KPSSPage = () => {
   const [examType, setExamType] = useState<any>({
@@ -83,6 +84,15 @@ const KPSSPage = () => {
         {examType?.code === "ogretmenlik" && (
           <div className="col-12 md:col-4">
             <Ogretmenlik
+              setAytScores={setAytScores}
+              toggleReset={toggleReset}
+            />
+          </div>
+        )}
+
+        {examType?.code === "onlisans" && (
+          <div className="col-12 md:col-4">
+            <OnLisans
               setAytScores={setAytScores}
               toggleReset={toggleReset}
             />
