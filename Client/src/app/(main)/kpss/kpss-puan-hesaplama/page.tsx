@@ -92,10 +92,13 @@ const KPSSPage = () => {
 
         {examType?.code === "onlisans" && (
           <div className="col-12 md:col-4">
-            <OnLisans
-              setAytScores={setAytScores}
-              toggleReset={toggleReset}
-            />
+            <OnLisans setAytScores={setAytScores} toggleReset={toggleReset} />
+          </div>
+        )}
+
+        {examType?.code === "ortaogretim" && (
+          <div className="col-12 md:col-4">
+            <OnLisans setAytScores={setAytScores} toggleReset={toggleReset} />
           </div>
         )}
 
