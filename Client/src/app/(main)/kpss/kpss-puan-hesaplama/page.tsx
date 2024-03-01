@@ -16,6 +16,7 @@ import KPSSExamType from "../../../components/KPSS/KPSSExamType";
 import Lisans from "../../../components/KPSS/Lisans";
 import Ogretmenlik from "../../../components/KPSS/Ogretmenlik";
 import OnLisans from "../../../components/KPSS/OnLisans";
+import DinHizmetleri from "../../../components/KPSS/DinHizmetleri";
 
 const KPSSPage = () => {
   const [examType, setExamType] = useState<any>({
@@ -99,6 +100,12 @@ const KPSSPage = () => {
         {examType?.code === "ortaogretim" && (
           <div className="col-12 md:col-4">
             <OnLisans setAytScores={setAytScores} toggleReset={toggleReset} />
+          </div>
+        )}
+
+        {examType?.code === "dinhizmetleri" && (
+          <div className="col-12 md:col-4">
+            <DinHizmetleri setAytScores={setAytScores} toggleReset={toggleReset} />
           </div>
         )}
 
