@@ -17,6 +17,7 @@ import Lisans from "../../../components/KPSS/Lisans";
 import Ogretmenlik from "../../../components/KPSS/Ogretmenlik";
 import OnLisans from "../../../components/KPSS/OnLisans";
 import DinHizmetleri from "../../../components/KPSS/DinHizmetleri";
+import KPSSPuanSonucları from "../../../components/KPSS/KPSSPuanSonucları";
 
 const KPSSPage = () => {
   const [examType, setExamType] = useState<any>({
@@ -110,7 +111,7 @@ const KPSSPage = () => {
         )}
 
         <div className="col-12 md:col-4">
-          <PuanSonucları
+          <KPSSPuanSonucları
             tytScores={tytScores}
             setTytScores={setTytScores}
             aytScores={aytScores}
