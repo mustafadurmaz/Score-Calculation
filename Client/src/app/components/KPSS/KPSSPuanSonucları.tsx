@@ -50,28 +50,21 @@ const KPSSPuanSonucları = ({
     useState<boolean>(false);
   const [scoreResults, setScoreResults] = useState([
     {
-      puanTuru: "TYT",
+      puanTuru: "KPSSP1",
       hamPuan: "-",
       yerlestirmePuani: "-",
     },
     {
-      puanTuru: "SAY",
+      puanTuru: "KPSSP2",
       hamPuan: "-",
       yerlestirmePuani: "-",
     },
     {
-      puanTuru: "EA",
-      hamPuan: "-",
-      yerlestirmePuani: "-",
-    },
-    {
-      puanTuru: "SÖZ",
+      puanTuru: "KPSSP3",
       hamPuan: "-",
       yerlestirmePuani: "-",
     },
   ]);
-
-
 
   const schema = yup.object({});
 
@@ -92,9 +85,7 @@ const KPSSPuanSonucları = ({
     },
   });
 
-  const onSubmit = (data: any) => {
-
-  };
+  const onSubmit = (data: any) => {};
 
   const scoreCalculate = () => {
     let ekPuan;
@@ -270,8 +261,10 @@ const KPSSPuanSonucları = ({
         <h5>SONUÇLAR</h5>
         <DataTable value={scoreResults} tableStyle={{ minWidth: "10rem" }}>
           <Column field="puanTuru" header="Puan Türü"></Column>
-          <Column field="hamPuan" header="Ham Puan"></Column>
-          <Column field="yerlestirmePuani" header="Yerleştirme Puanı"></Column>
+          <Column field="hamPuan" header="Puan"></Column>
+
+          {/* <Column field="yerlestirmePuani" header="Yerleştirme Puanı"></Column> */}
+
         </DataTable>
       </div>
       <div>
@@ -296,10 +289,13 @@ const KPSSPuanSonucları = ({
         />
       </div>
 
-      {showUniversityTable === true && <UniversityTable 
-      showUniversityTable={showUniversityTable} 
-      setShowUniversityTable={setShowUniversityTable}
-      scoreResults = {scoreResults} />}
+      {showUniversityTable === true && (
+        <UniversityTable
+          showUniversityTable={showUniversityTable}
+          setShowUniversityTable={setShowUniversityTable}
+          scoreResults={scoreResults}
+        />
+      )}
     </>
   );
 };
