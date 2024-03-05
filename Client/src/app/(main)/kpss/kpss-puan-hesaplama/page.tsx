@@ -48,6 +48,22 @@ const KPSSPage = () => {
     biyolojiNet: 0,
   });
 
+  const [lisansScores, setLisansScores] = useState({
+    genelYetenekNet: 0,
+    genelKulturNet: 0,
+    egitimBilimleriNet: 0,
+    hukukNet: 0,
+    iktisatNet: 0,
+    isletmeNet: 0,
+    maliyeNet: 0,
+    muhasebeNet: 0,
+    calismaEkonomisiNet: 0,
+    istatistikNet: 0,
+    kamuYonetimiNet: 0,
+    uİliskilerNet: 0,
+    isEnroll: false,
+  });
+
   const schema = yup.object({});
 
   const {
@@ -79,7 +95,7 @@ const KPSSPage = () => {
         </div>
         {examType?.code === "lisans" && (
           <div className="col-12 md:col-4">
-            <Lisans setAytScores={setAytScores} toggleReset={toggleReset} />
+            <Lisans setAytScores={setAytScores} setLisansScores={setLisansScores} toggleReset={toggleReset} />
           </div>
         )}
 

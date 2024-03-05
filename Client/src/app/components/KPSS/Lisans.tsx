@@ -50,10 +50,11 @@ interface IAYTInputs {
 
 interface Params {
   setAytScores: any;
+  setLisansScores: any;
   toggleReset: boolean;
 }
 
-const Lisans = ({ setAytScores, toggleReset }: Params) => {
+const Lisans = ({ setAytScores, setLisansScores, toggleReset }: Params) => {
   const schema = yup.object({});
 
   const {
