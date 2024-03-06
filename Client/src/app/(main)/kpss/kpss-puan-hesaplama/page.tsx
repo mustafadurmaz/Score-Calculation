@@ -64,6 +64,13 @@ const KPSSPage = () => {
     isEnroll: false,
   });
 
+  const [ogretmenlik, setOgretmenlik] = useState({
+    genelYetenekNet: 0,
+    genelKulturNet: 0,
+    egitimBilimleriNet: 0,
+    ydsNet: 0
+  });
+
   const schema = yup.object({});
 
   const {
