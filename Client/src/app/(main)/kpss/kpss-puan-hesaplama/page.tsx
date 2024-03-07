@@ -71,6 +71,11 @@ const KPSSPage = () => {
     ydsNet: 0
   });
 
+  const [onlisans, setOnlisans] = useState({
+    genelYetenekNet: 0,
+    genelKulturNet: 0
+  });
+
   const schema = yup.object({});
 
   const {
