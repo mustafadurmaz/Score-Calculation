@@ -76,6 +76,11 @@ const KPSSPage = () => {
     genelKulturNet: 0
   });
 
+  const [ortaogretim, setOrtaogretim] = useState({
+    genelYetenekNet: 0,
+    genelKulturNet: 0
+  });
+
   const schema = yup.object({});
 
   const {
