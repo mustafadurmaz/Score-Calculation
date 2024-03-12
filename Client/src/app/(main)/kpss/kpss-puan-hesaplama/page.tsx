@@ -81,6 +81,11 @@ const KPSSPage = () => {
     genelKulturNet: 0
   });
 
+  const [dinhizmetleri, setDinhizmetleri] = useState({
+    genelYetenekNet: 0,
+    genelKulturNet: 0
+  });
+
   const schema = yup.object({});
 
   const {
